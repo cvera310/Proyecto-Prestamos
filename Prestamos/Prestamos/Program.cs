@@ -12,6 +12,7 @@ namespace Prestamos
         {
             Console.WriteLine("Hola Mundo");
             Console.WriteLine("Hola Mundo");
+            Console.WriteLine("Hola Mundo 3");
         }
     }
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    class Moneda
+    public class Moneda
     {
+        public String Descripcion; 
+        public String PaisProcedencia;
+        public String CantidadDisponible;
+
+        public Moneda(){}
     }
 }

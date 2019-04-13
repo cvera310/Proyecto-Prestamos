@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    class TipoPrestamo
+    public class TipoPrestamo
     {
+        public String Descripcion {get; set;}
+        public int InteresBase {get; set;}
+
     }
 }

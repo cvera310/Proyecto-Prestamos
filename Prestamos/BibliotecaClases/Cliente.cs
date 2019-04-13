@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    class Cliente
+    public class Cliente : Persona
     {
+        public int NumeroCliente {get; set;}
+        public String LugarTrabajo {get; set;}
+        public int AntiguedadLaboral {get; set;}
+        public Boolean Informconf {get; set;}
+        
+        public Cliente (){}
     }
 }

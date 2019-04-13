@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    class Prestamo
+    public class Prestamo : TipoPrestamo
     {
+        public int NumeroPrestamo {get; set;}
+        public int MontoTotal {get; set;}
+        public int CantidadCuota {get; set;}
+        public int InteresGenerado {get; set;}
+        public int NumeroCliente {get; set;}
+        
+
+        public Prestamo(){}
+
     }
 }

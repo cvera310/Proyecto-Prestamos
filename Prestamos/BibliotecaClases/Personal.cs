@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    class Personal
+    public enum Cargo {Atc, Caja, Tesoreria}
+    public class Personal : Persona
     {
+        public int NumeroEmpleado {get; set;}
+        public Cargo cargo {get; set;}
+
+        public Personal(){}
+
+
     }
 }

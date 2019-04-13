@@ -13,7 +13,7 @@ namespace BibliotecaClases
         public int CantidadCuota {get; set;}
         public int InteresGenerado {get; set;}
         public int NumeroCliente {get; set;}
-        
+        public int Saldo { get; set; }
 
         public Prestamo(){}
 

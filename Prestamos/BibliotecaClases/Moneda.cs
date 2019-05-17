@@ -12,6 +12,26 @@ namespace BibliotecaClases
         public String PaisProcedencia;
         public String CantidadDisponible;
 
-        public Moneda(){}
+        public static List<Moneda> ListaMoneda = new List<Moneda>();
+
+        public static void Agregar (Moneda m)
+        {
+            ListaMoneda.Add(m);
+        }
+      
+        public static void Eliminar (Moneda m)
+        {
+            ListaMoneda.Remove(m);
+        }
+
+        public static List<Moneda> ListarMoneda()
+        {
+            return ListaMoneda;
+        }
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }

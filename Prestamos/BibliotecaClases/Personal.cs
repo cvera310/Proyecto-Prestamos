@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BibliotecaClases
 {
     public enum Cargo {Atc, Caja, Tesoreria}
-    public class Personal : Persona
+    public class Personal 
     {
         public int NumeroEmpleado {get; set;}
         public Cargo cargo {get; set;}

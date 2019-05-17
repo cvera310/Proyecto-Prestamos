@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace Prestamos
 {
     class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
-            Console.WriteLine("Hola Mundo");
-            Console.WriteLine("Hola Mundo");
-            Console.WriteLine("Hola Mundo 3");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frmLogin());
+
+            frmLogin menu = new frmLogin();
+            //frmMenu menu = new frmMenu();
+                
+            menu.Show();
+            Application.Run();
         }
     }
 }

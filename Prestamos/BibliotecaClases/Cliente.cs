@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-    public class Cliente 
+    public class Cliente
     {
-        public String RazonSocial { get; set; }
+        public int NumeroCliente { get; set; }
         public String Cedula { get; set; }
+        public String RazonSocial { get; set; }
+
+
         public String Nacimiento { get; set; }
         public String Telefono { get; set; }
         public String Direccion { get; set; }
         public String Foto { get; set; }
-        public int NumeroCliente {get; set;}
-        public String LugarTrabajo {get; set;}
-        public int AntiguedadLaboral {get; set;}
-        public Boolean Informconf {get; set;}
+
+        public String LugarTrabajo { get; set; }
+        public int AntiguedadLaboral { get; set; }
+        public Boolean Informconf { get; set; }
 
         public static List<Cliente> ListaCliente = new List<Cliente>();
 
@@ -26,7 +29,7 @@ namespace BibliotecaClases
             ListaCliente.Add(c);
         }
 
-        public static void Eliminar (Cliente c)
+        public static void Eliminar(Cliente c)
         {
             ListaCliente.Remove(c);
         }

@@ -8,9 +8,9 @@ namespace BibliotecaClases
 {
     public class Moneda
     {
-        public String Descripcion; 
-        public String PaisProcedencia;
-        public String CantidadDisponible;
+        public String Descripcion { get; set; }
+        public String PaisProcedencia { get; set; }
+        public String CantidadDisponible { get; set; }
 
         public static List<Moneda> ListaMoneda = new List<Moneda>();
 

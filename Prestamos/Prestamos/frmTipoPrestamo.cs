@@ -20,14 +20,20 @@ namespace Prestamos
 
         private void frmTipoPrestamo_Load(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente();
+            BibliotecaClases.Cliente cliente = new BibliotecaClases.Cliente();
             dgvTipoPrestamo.AutoGenerateColumns = true;
+
+            if (TipoPrestamo.ObtenerTipoPrestamo() != null)
+            {
+                ActualizarDgv();
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             TipoPrestamo tp = new TipoPrestamo();
-            if (txtCodigo != null && txtDescripcion != null && txtInteres != null) {
+            if (txtCodigo != null && txtDescripcion != null && txtInteres != null)
+            {
                 tp.Codigo = txtCodigo.Text;
                 tp.Descripcion = txtDescripcion.Text;
                 tp.InteresBase = Convert.ToDouble(txtInteres.Text);
@@ -35,9 +41,11 @@ namespace Prestamos
 
                 ActualizarDgv();
                 LimpiarFormulario();
-               MessageBox.Show("Dato agregado con exito");
 
-            } else {
+
+            }
+            else
+            {
                 MessageBox.Show("Debe completar todos los datos");
             }
         }
@@ -71,7 +79,7 @@ namespace Prestamos
                 MessageBox.Show("Actualizado correctamente");
             }
 
-           
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -88,13 +96,13 @@ namespace Prestamos
         private void dgvTipoPrestamo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             TipoPrestamo tp = (TipoPrestamo)dgvTipoPrestamo.CurrentRow.DataBoundItem;
-                      
-                btnModificar.Enabled = true;
-                btnEliminar.Enabled = true;
-                txtCodigo.Text = tp.Codigo;
-                txtDescripcion.Text = tp.Descripcion;
-                txtInteres.Text = Convert.ToString(tp.InteresBase);
-           
+
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            txtCodigo.Text = tp.Codigo;
+            txtDescripcion.Text = tp.Descripcion;
+            txtInteres.Text = Convert.ToString(tp.InteresBase);
+
         }
     }
 }

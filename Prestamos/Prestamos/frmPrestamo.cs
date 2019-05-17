@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +22,21 @@ namespace Prestamos
         private void frmPrestamo_Load(object sender, EventArgs e)
         {
             CargarcmbCantCuota();
+            LimpiarFormulario();
             dgvPrestamoDetalle.AutoGenerateColumns = true;
             cmbMoneda.DataSource = Moneda.ListarMoneda();
             cmbTipoPrestamo.DataSource = TipoPrestamo.ObtenerTipoPrestamo();
-            cmbCliente.DataSource = Cliente.ListarCliente();
+            cmbCliente.DataSource = BibliotecaClases.Cliente.ListarCliente();
         }
 
         public void CargarcmbCantCuota()
         {
-            
+
             for (int i = 2; i <= 120; i++)
             {
                 cmbCantCuota.Items.Add(i);
             }
-            
+
         }
 
         public Prestamo ObtenerFormulario()
@@ -42,7 +44,7 @@ namespace Prestamos
             Prestamo prestamo = new Prestamo();
             prestamo.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
             prestamo.Fecha = dtpFecha.Value.Date;
-            prestamo.cliente = (Cliente)cmbCliente.SelectedItem;
+            prestamo.cliente = (BibliotecaClases.Cliente)cmbCliente.SelectedItem;
             prestamo.tipoPrestamo = (TipoPrestamo)cmbTipoPrestamo.SelectedItem;
             prestamo.MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
             prestamo.moneda = (Moneda)cmbMoneda.SelectedItem;
@@ -59,35 +61,38 @@ namespace Prestamos
             Prestamo prestamo = ObtenerFormulario();
             Prestamo.Agregar(prestamo);
             LimpiarFormulario();
-            
+
             prestamo = new Prestamo();
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             Prestamo prestamo = new Prestamo();
-            PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
             double Total = 0;
             int MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
-            int Interes = Convert.ToInt32(txtInteres.Text);
-            int InteresGenerado=0;
+            double Interes = Convert.ToDouble(txtInteres.Text);
+            double InteresGenerado = 0;
             int CantCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
             Double MontoCuota;
             InteresGenerado = MontoSolicitado * (Interes / 100);
-            Total = MontoSolicitado+(MontoSolicitado*(Interes/100));
-            MontoCuota = Total / CantCuota;
-            txtMontoTotal.Text = Convert.ToString(Total);
+            Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
+
+            MontoCuota = Math.Round((Total / CantCuota), 0);
+
+            txtMontoTotal.Text = (MontoCuota * CantCuota).ToString("N", nfi);
 
             for (int i = 1; i <= CantCuota; i++)
             {
+                PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
                 prestamoDetalle.NroCuota = i;
                 prestamoDetalle.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
                 prestamoDetalle.MontoDetalle = MontoCuota;
                 prestamoDetalle.SaldoDetalle = MontoCuota;
                 prestamoDetalle.estado = EstadoPrestamo.No_pagado;
                 prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
-                PrestamoDetalle.Agregar(prestamo);
-                Console.WriteLine("entra" + "\n");
+                PrestamoDetalle.Agregar(prestamoDetalle);
+
             }
 
             ActualizarDgv();
@@ -121,7 +126,7 @@ namespace Prestamos
             btnModificar.Enabled = true;
             PrestamoDetalle prestamoDetalle = (PrestamoDetalle)dgvPrestamoDetalle.CurrentRow.DataBoundItem;
             txtNumero.Text = Convert.ToString(prestamoDetalle.NumeroPrestamo);
-            dtpFecha.Value = prestamoDetalle.Fecha;
+            //dtpFecha.Value = prestamoDetalle.Fecha;
             cmbCliente.SelectedItem = prestamoDetalle.cliente;
 
 
@@ -132,6 +137,6 @@ namespace Prestamos
             LimpiarFormulario();
         }
 
-        
+
     }
 }

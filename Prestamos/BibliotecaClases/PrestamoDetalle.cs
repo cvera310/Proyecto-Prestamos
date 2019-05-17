@@ -9,11 +9,11 @@ namespace BibliotecaClases
     public enum EstadoPrestamo { Pagado, No_pagado }
     public class PrestamoDetalle : Prestamo
     {
-        public int NroCuota;
-        public double MontoDetalle;
-        public double SaldoDetalle;
-        public DateTime Vencimiento;
-        public EstadoPrestamo estado;
+        public int NroCuota { get; set; }
+        public double MontoDetalle { get; set; }
+        public double SaldoDetalle { get; set; }
+        public DateTime Vencimiento { get; set; }
+        public EstadoPrestamo estado { get; set; }
 
         public static List<PrestamoDetalle> ListaPrestamoDetalle = new List<PrestamoDetalle>();
         

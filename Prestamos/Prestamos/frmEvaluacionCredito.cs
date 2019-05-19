@@ -35,8 +35,12 @@ namespace Prestamos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            EvaluacionCredito ec = new EvaluacionCredito();
-            //ec.Alimentacion = Convert.ToInt16(txtAlimentacion);
+            EvaluacionCredito evaluacion = ObtenerEvaluacionFormulario();
+
+            EvaluacionCredito.Agregar(evaluacion);
+
+
+            
 
         }
 
@@ -77,5 +81,28 @@ namespace Prestamos
             dtpFechaNac.Value = cliente.Nacimiento;
 
         }
+
+        private EvaluacionCredito ObtenerEvaluacionFormulario()
+        {
+            EvaluacionCredito evaluacion = new EvaluacionCredito();
+            evaluacion.cliente = (Cliente)cmbCliente.SelectedItem;
+            evaluacion.Alimentacion = Convert.ToInt16(txtAlimentacion.Text);
+            evaluacion.Alquiler = Convert.ToInt16(txtAlquiler.Text);
+            evaluacion.ServiciosBasicos = Convert.ToInt16(txtServicios.Text);
+            evaluacion.Transporte = Convert.ToInt16(txtTransporte.Text);
+            evaluacion.Salario = Convert.ToInt16(txtSalario.Text);
+            evaluacion.Otros = Convert.ToInt16(txtOtros.Text);
+            evaluacion.IngresoExtra = Convert.ToInt16(txtIngresoExtra.Text);
+            evaluacion.tipo_pago = (EvaluacionCredito.TipoPago)cmbTipoPago.SelectedItem;
+            evaluacion.TotalEgresos = Convert.ToInt16(txtTotalEgresos.Text);
+            evaluacion.TotalIngresos = Convert.ToInt16(txtTotalIngresos.Text);
+
+
+            return evaluacion;
+        }
+
+
+
+
     }
 }

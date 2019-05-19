@@ -104,5 +104,10 @@ namespace Prestamos
             txtInteres.Text = Convert.ToString(tp.InteresBase);
 
         }
+
+        private void dgvTipoPrestamo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

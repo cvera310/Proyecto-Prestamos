@@ -8,9 +8,12 @@ namespace BibliotecaClases
 {
     public class Moneda
     {
+        public int Codigo { get; set; }
         public String Descripcion { get; set; }
         public String PaisProcedencia { get; set; }
-        public String CantidadDisponible { get; set; }
+
+        //public List<MonedaDetalle> detalle_moneda = new List<MonedaDetalle>();
+       // public String CantidadDisponible { get; set; }
 
         public static List<Moneda> ListaMoneda = new List<Moneda>();
 
@@ -32,6 +35,11 @@ namespace BibliotecaClases
         public override string ToString()
         {
             return Descripcion;
+        }
+         
+        public static List<Moneda> ObtenerMoneda()
+        {
+            return ListaMoneda;
         }
     }
 }

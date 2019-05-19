@@ -44,6 +44,7 @@
     <Compile Include="Cobranza.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Moneda.cs" />
+    <Compile Include="MonedaDetalle.cs" />
     <Compile Include="Personal.cs" />
     <Compile Include="Prestamo.cs" />
     <Compile Include="PrestamoDetalle.cs" />

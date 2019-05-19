@@ -41,5 +41,17 @@ namespace Prestamos
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToShortDateString().ToString() + " - " + DateTime.Now.ToLongTimeString().ToString();
         }
+
+        private void registrarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEvaluacionCredito form = new frmEvaluacionCredito();
+            form.Show();
+        }
+
+        private void registroDeMonedaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMoneda form = new frmMoneda();
+            form.Show();
+        }
     }
 }

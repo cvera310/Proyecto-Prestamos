@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
+
+    public enum Sexo
+    {
+        Masculino,
+        Femenimo,
+        NoDefinido
+    }
+
+    public enum TipoDocumento
+    {
+        CI,
+        DNI,
+        RUC
+    }
+
     public class Cliente
     {
         public int NumeroCliente { get; set; }

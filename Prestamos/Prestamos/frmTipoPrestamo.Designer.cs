@@ -142,6 +142,7 @@
             this.dgvTipoPrestamo.Size = new System.Drawing.Size(240, 187);
             this.dgvTipoPrestamo.TabIndex = 18;
             this.dgvTipoPrestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTipoPrestamo_CellClick);
+            this.dgvTipoPrestamo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTipoPrestamo_CellContentClick);
             // 
             // frmTipoPrestamo
             // 

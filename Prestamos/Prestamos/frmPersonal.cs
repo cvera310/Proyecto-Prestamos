@@ -54,6 +54,19 @@ namespace Prestamos
             cmbCargo.SelectedItem= null;
         }
 
+        private void LimpiarFormularioParcial()
+        {
+
+            
+            txtNroDocumento.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            dtpFechaNac.Value = System.DateTime.Now;
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+            cmbCargo.SelectedItem = null;
+        }
+
         private void btnAgragar_Click(object sender, EventArgs e)
         {
             Personal personal = ObtenerPersonalForm();
@@ -67,9 +80,15 @@ namespace Prestamos
                 if (per.NumeroEmpleado == Convert.ToInt32(txtNroEmpleado.Text))
                 {
                     txtNroEmpleado.Text = Convert.ToString(per.NumeroEmpleado);
-                    
-                   btnAgragar.Enabled = false
-                   btnGuardar.Enabled = true;
+                    txtNroDocumento.Text = per.Documento;
+                    txtNombre.Text = per.Nombre;
+                    txtApellido.Text = per.Apellido;
+                    dtpFechaNac.Value = per.FechaNac;
+                    txtTelefono.Text = per.Telefono;
+                    txtDireccion.Text = per.Direccion;
+                    cmbCargo.SelectedItem = per.Cargo;
+                    btnAgragar.Enabled = false;
+                    btnGuardar.Enabled = true;
                 }
                 else
                 {
@@ -77,7 +96,13 @@ namespace Prestamos
                     btnAgragar.Enabled = true;
                    
                     btnGuardar.Enabled = false;
+                    LimpiarFormularioParcial();
                 }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
         }
     }
 }

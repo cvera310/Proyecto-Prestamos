@@ -53,5 +53,11 @@ namespace Prestamos
             frmMoneda form = new frmMoneda();
             form.Show();
         }
+
+        private void registroDeClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCliente form = new frmCliente();
+            form.Show();
+        }
     }
 }

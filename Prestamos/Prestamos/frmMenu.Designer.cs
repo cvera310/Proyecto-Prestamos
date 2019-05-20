@@ -32,23 +32,23 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.solicitudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aprobarCreditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prestamoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDePrestamoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.registroDeClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeMonedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aprobarCreditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +84,12 @@
             this.registrarClienteToolStripMenuItem.Text = "Registrar Solicitud de Credito";
             this.registrarClienteToolStripMenuItem.Click += new System.EventHandler(this.registrarClienteToolStripMenuItem_Click);
             // 
+            // aprobarCreditosToolStripMenuItem
+            // 
+            this.aprobarCreditosToolStripMenuItem.Name = "aprobarCreditosToolStripMenuItem";
+            this.aprobarCreditosToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.aprobarCreditosToolStripMenuItem.Text = "Aprobar Creditos";
+            // 
             // prestamoToolStripMenuItem
             // 
             this.prestamoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -96,14 +102,14 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.tsmPrestamo_Click);
             // 
             // tipoDePrestamoToolStripMenuItem
             // 
             this.tipoDePrestamoToolStripMenuItem.Name = "tipoDePrestamoToolStripMenuItem";
-            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tipoDePrestamoToolStripMenuItem.Text = "Tipo de prestamo";
             this.tipoDePrestamoToolStripMenuItem.Click += new System.EventHandler(this.tsmTipoPrestamo_Click);
             // 
@@ -131,6 +137,26 @@
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.reportesToolStripMenuItem.Text = "Registros";
             // 
+            // registroDeClienteToolStripMenuItem
+            // 
+            this.registroDeClienteToolStripMenuItem.Name = "registroDeClienteToolStripMenuItem";
+            this.registroDeClienteToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.registroDeClienteToolStripMenuItem.Text = "Registro de Cliente";
+            this.registroDeClienteToolStripMenuItem.Click += new System.EventHandler(this.registroDeClienteToolStripMenuItem_Click);
+            // 
+            // registroDeEmpleadoToolStripMenuItem
+            // 
+            this.registroDeEmpleadoToolStripMenuItem.Name = "registroDeEmpleadoToolStripMenuItem";
+            this.registroDeEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.registroDeEmpleadoToolStripMenuItem.Text = "Registro de Empleado";
+            // 
+            // registroDeMonedaToolStripMenuItem
+            // 
+            this.registroDeMonedaToolStripMenuItem.Name = "registroDeMonedaToolStripMenuItem";
+            this.registroDeMonedaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.registroDeMonedaToolStripMenuItem.Text = "Registro de Moneda";
+            this.registroDeMonedaToolStripMenuItem.Click += new System.EventHandler(this.registroDeMonedaToolStripMenuItem_Click);
+            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -144,6 +170,20 @@
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.acercaDeToolStripMenuItem.Text = "Prestamos Aprobados";
+            // 
+            // ayudaToolStripMenuItem1
+            // 
+            this.ayudaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.acercaDeToolStripMenuItem1});
+            this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
+            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem1.Text = "Ayuda";
+            // 
+            // acercaDeToolStripMenuItem1
+            // 
+            this.acercaDeToolStripMenuItem1.Name = "acercaDeToolStripMenuItem1";
+            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.acercaDeToolStripMenuItem1.Text = "Acerca de";
             // 
             // statusStrip1
             // 
@@ -166,45 +206,6 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // registroDeClienteToolStripMenuItem
-            // 
-            this.registroDeClienteToolStripMenuItem.Name = "registroDeClienteToolStripMenuItem";
-            this.registroDeClienteToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.registroDeClienteToolStripMenuItem.Text = "Registro de Cliente";
-            // 
-            // registroDeEmpleadoToolStripMenuItem
-            // 
-            this.registroDeEmpleadoToolStripMenuItem.Name = "registroDeEmpleadoToolStripMenuItem";
-            this.registroDeEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.registroDeEmpleadoToolStripMenuItem.Text = "Registro de Empleado";
-            // 
-            // registroDeMonedaToolStripMenuItem
-            // 
-            this.registroDeMonedaToolStripMenuItem.Name = "registroDeMonedaToolStripMenuItem";
-            this.registroDeMonedaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.registroDeMonedaToolStripMenuItem.Text = "Registro de Moneda";
-            this.registroDeMonedaToolStripMenuItem.Click += new System.EventHandler(this.registroDeMonedaToolStripMenuItem_Click);
-            // 
-            // ayudaToolStripMenuItem1
-            // 
-            this.ayudaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acercaDeToolStripMenuItem1});
-            this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
-            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
-            this.ayudaToolStripMenuItem1.Text = "Ayuda";
-            // 
-            // acercaDeToolStripMenuItem1
-            // 
-            this.acercaDeToolStripMenuItem1.Name = "acercaDeToolStripMenuItem1";
-            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.acercaDeToolStripMenuItem1.Text = "Acerca de";
-            // 
-            // aprobarCreditosToolStripMenuItem
-            // 
-            this.aprobarCreditosToolStripMenuItem.Name = "aprobarCreditosToolStripMenuItem";
-            this.aprobarCreditosToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.aprobarCreditosToolStripMenuItem.Text = "Aprobar Creditos";
             // 
             // frmMenu
             // 

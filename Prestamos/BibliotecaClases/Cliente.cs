@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BibliotecaClases
 {
-
+    //No binarie en leguaje inclusive
     public enum Sexo
     {
         Masculino,
         Femenimo,
-        NoDefinido
+        No_Binarie
     }
 
     public enum TipoDocumento
@@ -24,11 +24,13 @@ namespace BibliotecaClases
     public class Cliente
     {
         public int NumeroCliente { get; set; }
-        public String Cedula { get; set; }
+        public TipoDocumento TipoDeDocumento { get; set; }
+        public String Documento { get; set; }
+        public Sexo Sexo { get; set; }
         public String RazonSocial { get; set; }
 
 
-        public String Nacimiento { get; set; }
+        public DateTime Nacimiento { get; set; }
         public String Telefono { get; set; }
         public String Direccion { get; set; }
         public String Foto { get; set; }

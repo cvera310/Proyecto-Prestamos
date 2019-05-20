@@ -197,6 +197,7 @@
             this.txtMontoTotal.ReadOnly = true;
             this.txtMontoTotal.Size = new System.Drawing.Size(87, 20);
             this.txtMontoTotal.TabIndex = 23;
+            this.txtMontoTotal.TextChanged += new System.EventHandler(this.txtMontoTotal_TextChanged);
             // 
             // label2
             // 

@@ -38,6 +38,9 @@ namespace BibliotecaClases
         public String LugarTrabajo { get; set; }
         public int AntiguedadLaboral { get; set; }
         public Boolean Informconf { get; set; }
+        public TipoDocumento tipo_documento { get; set; }
+        public Sexo sexo { get; set; }
+
 
         public static List<Cliente> ListaCliente = new List<Cliente>();
 

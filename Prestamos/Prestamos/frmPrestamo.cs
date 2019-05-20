@@ -137,6 +137,9 @@ namespace Prestamos
             LimpiarFormulario();
         }
 
+        private void txtMontoTotal_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

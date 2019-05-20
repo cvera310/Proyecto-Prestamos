@@ -92,5 +92,27 @@ namespace Prestamos
         {
 
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Moneda md = new Moneda();
+
+            int MonedaID = dtgDetalleMoneda.CurrentRow.Index;
+
+           if (MonedaID > -1)
+            {
+                md.Codigo = Convert.ToInt16(txtCodigo.Text);
+                md.Descripcion = txtDescripcion.Text;
+                md.PaisProcedencia = txtPais.Text;
+
+                Moneda.ListaMoneda[MonedaID] = md;
+                ActualizarDataGrid();
+
+                MessageBox.Show("Registro Acualizado Correctamente");
+
+            }
+
+
+        }
     }
 }

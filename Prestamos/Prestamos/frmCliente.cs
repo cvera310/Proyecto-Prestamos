@@ -64,12 +64,16 @@ namespace Prestamos
                         rdbInformConfSI.Checked = true;
                     }
                     btnAgregar.Enabled = false;
+                    btnGuardar.Enabled = true;
                 }
-              // else
-              //    {
-              //     MessageBox.Show("Cliente no encontrado");
-              //      LimpiarFormulario();
-              //    }
+              else
+              {
+                    //     MessageBox.Show("Cliente no encontrado");
+                    //      LimpiarFormulario();
+                    btnAgregar.Enabled = true;
+                    LimpiarFormularioParcial();
+                    btnGuardar.Enabled = false;
+                }
 
          }
 
@@ -81,6 +85,7 @@ namespace Prestamos
             cmbSexo.SelectedItem = null;
             rdbInformconfNO.Checked = true;
             rdbInformConfSI.Checked = false;
+            btnGuardar.Enabled = false;
 
         }
 
@@ -146,6 +151,24 @@ namespace Prestamos
         {
 
             txtNumCliente.Text = "";
+            cmbTipoDocumento.SelectedItem = null;
+            txtNroDocumento.Text = "";
+            cmbSexo.SelectedItem = null;
+            txtRazonSocial.Text = "";
+            dtpFechaNacimiento.Value = System.DateTime.Now;
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+            txtLugarTrabajo.Text = "";
+            txtAntiguedad.Text = "";
+            rdbInformconfNO.Checked = true;
+            rdbInformConfSI.Checked = false;
+            btnAgregar.Enabled = true;
+        }
+
+        //limpia el formulario, pero deja el numero de cliente
+        private void LimpiarFormularioParcial()
+        {
+
             cmbTipoDocumento.SelectedItem = null;
             txtNroDocumento.Text = "";
             cmbSexo.SelectedItem = null;

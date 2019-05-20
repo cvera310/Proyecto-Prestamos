@@ -183,7 +183,7 @@
             this.rdbInformconfNO.Location = new System.Drawing.Point(166, 106);
             this.rdbInformconfNO.Name = "rdbInformconfNO";
             this.rdbInformconfNO.Size = new System.Drawing.Size(41, 17);
-            this.rdbInformconfNO.TabIndex = 3;
+            this.rdbInformconfNO.TabIndex = 11;
             this.rdbInformconfNO.TabStop = true;
             this.rdbInformconfNO.Text = "NO";
             this.rdbInformconfNO.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             this.rdbInformConfSI.Location = new System.Drawing.Point(271, 106);
             this.rdbInformConfSI.Name = "rdbInformConfSI";
             this.rdbInformConfSI.Size = new System.Drawing.Size(35, 17);
-            this.rdbInformConfSI.TabIndex = 4;
+            this.rdbInformConfSI.TabIndex = 12;
             this.rdbInformConfSI.TabStop = true;
             this.rdbInformConfSI.Text = "SI";
             this.rdbInformConfSI.UseVisualStyleBackColor = true;
@@ -214,21 +214,21 @@
             this.cmbTipoDocumento.Location = new System.Drawing.Point(187, 64);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(170, 21);
-            this.cmbTipoDocumento.TabIndex = 10;
+            this.cmbTipoDocumento.TabIndex = 2;
             // 
             // txtNroDocumento
             // 
             this.txtNroDocumento.Location = new System.Drawing.Point(187, 92);
             this.txtNroDocumento.Name = "txtNroDocumento";
             this.txtNroDocumento.Size = new System.Drawing.Size(170, 20);
-            this.txtNroDocumento.TabIndex = 11;
+            this.txtNroDocumento.TabIndex = 3;
             // 
             // txtRazonSocial
             // 
             this.txtRazonSocial.Location = new System.Drawing.Point(187, 145);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(170, 20);
-            this.txtRazonSocial.TabIndex = 12;
+            this.txtRazonSocial.TabIndex = 5;
             // 
             // lblSexo
             // 
@@ -245,28 +245,28 @@
             this.cmbSexo.Location = new System.Drawing.Point(187, 118);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(170, 21);
-            this.cmbSexo.TabIndex = 14;
+            this.cmbSexo.TabIndex = 4;
             // 
             // dtpFechaNacimiento
             // 
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(187, 171);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(170, 20);
-            this.dtpFechaNacimiento.TabIndex = 15;
+            this.dtpFechaNacimiento.TabIndex = 6;
             // 
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(187, 198);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(170, 20);
-            this.txtTelefono.TabIndex = 16;
+            this.txtTelefono.TabIndex = 7;
             // 
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(187, 225);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(170, 20);
-            this.txtDireccion.TabIndex = 17;
+            this.txtDireccion.TabIndex = 8;
             // 
             // lblTitulo
             // 
@@ -312,14 +312,14 @@
             this.txtLugarTrabajo.Location = new System.Drawing.Point(136, 13);
             this.txtLugarTrabajo.Name = "txtLugarTrabajo";
             this.txtLugarTrabajo.Size = new System.Drawing.Size(170, 20);
-            this.txtLugarTrabajo.TabIndex = 5;
+            this.txtLugarTrabajo.TabIndex = 9;
             // 
             // txtAntiguedad
             // 
             this.txtAntiguedad.Location = new System.Drawing.Point(136, 56);
             this.txtAntiguedad.Name = "txtAntiguedad";
             this.txtAntiguedad.Size = new System.Drawing.Size(170, 20);
-            this.txtAntiguedad.TabIndex = 6;
+            this.txtAntiguedad.TabIndex = 10;
             this.txtAntiguedad.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // lblAntiguedad

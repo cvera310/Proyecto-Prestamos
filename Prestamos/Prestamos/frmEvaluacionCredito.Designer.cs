@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbCliente = new System.Windows.Forms.GroupBox();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbTipoDoc = new System.Windows.Forms.ComboBox();
@@ -43,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbEgresos = new System.Windows.Forms.GroupBox();
+            this.btnTotalEngreso = new System.Windows.Forms.Button();
             this.txtTotalEgresos = new System.Windows.Forms.TextBox();
             this.txtOtros = new System.Windows.Forms.TextBox();
             this.txtTransporte = new System.Windows.Forms.TextBox();
@@ -55,6 +57,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gbIngresos = new System.Windows.Forms.GroupBox();
+            this.txtIngresoExtra = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnTotalIngreso = new System.Windows.Forms.Button();
+            this.cmbTipoPago = new System.Windows.Forms.ComboBox();
             this.txtTotalIngresos = new System.Windows.Forms.TextBox();
             this.txtSalario = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -63,12 +69,6 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.cmbTipoPago = new System.Windows.Forms.ComboBox();
-            this.cmbCliente = new System.Windows.Forms.ComboBox();
-            this.btnTotalEngreso = new System.Windows.Forms.Button();
-            this.btnTotalIngreso = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtIngresoExtra = new System.Windows.Forms.TextBox();
             this.gbCliente.SuspendLayout();
             this.gbEgresos.SuspendLayout();
             this.gbIngresos.SuspendLayout();
@@ -96,6 +96,15 @@
             this.gbCliente.TabIndex = 0;
             this.gbCliente.TabStop = false;
             this.gbCliente.Text = "Cliente";
+            // 
+            // cmbCliente
+            // 
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(77, 20);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(121, 21);
+            this.cmbCliente.TabIndex = 16;
+            this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
             // 
             // cmbSexo
             // 
@@ -225,6 +234,16 @@
             this.gbEgresos.TabStop = false;
             this.gbEgresos.Text = "Egresos";
             // 
+            // btnTotalEngreso
+            // 
+            this.btnTotalEngreso.Location = new System.Drawing.Point(490, 60);
+            this.btnTotalEngreso.Name = "btnTotalEngreso";
+            this.btnTotalEngreso.Size = new System.Drawing.Size(142, 23);
+            this.btnTotalEngreso.TabIndex = 12;
+            this.btnTotalEngreso.Text = "Calcular Total Engreso";
+            this.btnTotalEngreso.UseVisualStyleBackColor = true;
+            this.btnTotalEngreso.Click += new System.EventHandler(this.btnTotalEngreso_Click);
+            // 
             // txtTotalEgresos
             // 
             this.txtTotalEgresos.Location = new System.Drawing.Point(644, 62);
@@ -329,6 +348,40 @@
             this.gbIngresos.TabStop = false;
             this.gbIngresos.Text = "Ingresos";
             // 
+            // txtIngresoExtra
+            // 
+            this.txtIngresoExtra.Location = new System.Drawing.Point(353, 27);
+            this.txtIngresoExtra.Name = "txtIngresoExtra";
+            this.txtIngresoExtra.Size = new System.Drawing.Size(100, 20);
+            this.txtIngresoExtra.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(252, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 13);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Ingresos Extras";
+            // 
+            // btnTotalIngreso
+            // 
+            this.btnTotalIngreso.Location = new System.Drawing.Point(490, 72);
+            this.btnTotalIngreso.Name = "btnTotalIngreso";
+            this.btnTotalIngreso.Size = new System.Drawing.Size(142, 23);
+            this.btnTotalIngreso.TabIndex = 7;
+            this.btnTotalIngreso.Text = "Calcular Total Ingreso";
+            this.btnTotalIngreso.UseVisualStyleBackColor = true;
+            this.btnTotalIngreso.Click += new System.EventHandler(this.btnTotalIngreso_Click);
+            // 
+            // cmbTipoPago
+            // 
+            this.cmbTipoPago.FormattingEnabled = true;
+            this.cmbTipoPago.Location = new System.Drawing.Point(89, 66);
+            this.cmbTipoPago.Name = "cmbTipoPago";
+            this.cmbTipoPago.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoPago.TabIndex = 6;
+            // 
             // txtTotalIngresos
             // 
             this.txtTotalIngresos.Location = new System.Drawing.Point(644, 74);
@@ -403,65 +456,12 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // cmbTipoPago
-            // 
-            this.cmbTipoPago.FormattingEnabled = true;
-            this.cmbTipoPago.Location = new System.Drawing.Point(89, 66);
-            this.cmbTipoPago.Name = "cmbTipoPago";
-            this.cmbTipoPago.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipoPago.TabIndex = 6;
-            // 
-            // cmbCliente
-            // 
-            this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(77, 20);
-            this.cmbCliente.Name = "cmbCliente";
-            this.cmbCliente.Size = new System.Drawing.Size(121, 21);
-            this.cmbCliente.TabIndex = 16;
-            this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
-            // 
-            // btnTotalEngreso
-            // 
-            this.btnTotalEngreso.Location = new System.Drawing.Point(490, 60);
-            this.btnTotalEngreso.Name = "btnTotalEngreso";
-            this.btnTotalEngreso.Size = new System.Drawing.Size(142, 23);
-            this.btnTotalEngreso.TabIndex = 12;
-            this.btnTotalEngreso.Text = "Calcular Total Engreso";
-            this.btnTotalEngreso.UseVisualStyleBackColor = true;
-            this.btnTotalEngreso.Click += new System.EventHandler(this.btnTotalEngreso_Click);
-            // 
-            // btnTotalIngreso
-            // 
-            this.btnTotalIngreso.Location = new System.Drawing.Point(490, 72);
-            this.btnTotalIngreso.Name = "btnTotalIngreso";
-            this.btnTotalIngreso.Size = new System.Drawing.Size(142, 23);
-            this.btnTotalIngreso.TabIndex = 7;
-            this.btnTotalIngreso.Text = "Calcular Total Ingreso";
-            this.btnTotalIngreso.UseVisualStyleBackColor = true;
-            this.btnTotalIngreso.Click += new System.EventHandler(this.btnTotalIngreso_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(252, 28);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 13);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Ingresos Extras";
-            // 
-            // txtIngresoExtra
-            // 
-            this.txtIngresoExtra.Location = new System.Drawing.Point(353, 27);
-            this.txtIngresoExtra.Name = "txtIngresoExtra";
-            this.txtIngresoExtra.Size = new System.Drawing.Size(100, 20);
-            this.txtIngresoExtra.TabIndex = 9;
-            // 
             // frmEvaluacionCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 435);
+            this.ClientSize = new System.Drawing.Size(800, 472);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnModificar);

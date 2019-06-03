@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaClases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class frmMenu : Form
+    public partial class frmMenu : MetroFramework.Forms.MetroForm
     {
         public frmMenu()
         {
@@ -19,7 +20,7 @@ namespace Prestamos
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-           
+            lblusuario.Text = LoginUsuario.UsuarioConectado();
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace Prestamos
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = DateTime.Now.ToShortDateString().ToString() + " - " + DateTime.Now.ToLongTimeString().ToString();
+            toolStripStatusLabel2.Text = DateTime.Now.ToShortDateString().ToString() + " - " + DateTime.Now.ToLongTimeString().ToString();
         }
 
         private void registrarClienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,6 +58,11 @@ namespace Prestamos
         private void registroDeClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCliente form = new frmCliente();
+            form.Show();
+        }
+        private void registroDeUsuario_Click(object sender, EventArgs e)
+        {
+            frmUsuario form = new frmUsuario();
             form.Show();
         }
     }

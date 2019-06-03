@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class frmEvaluacionCredito : Form
+    public partial class frmEvaluacionCredito : MetroFramework.Forms.MetroForm
     {
         public frmEvaluacionCredito()
         {

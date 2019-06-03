@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class frmPrestamo : Form
+    public partial class frmPrestamo : MetroFramework.Forms.MetroForm
     {
         public frmPrestamo()
         {
@@ -21,12 +22,13 @@ namespace Prestamos
 
         private void frmPrestamo_Load(object sender, EventArgs e)
         {
+            txtUsuario.Text = LoginUsuario.UsuarioConectado();
             CargarcmbCantCuota();
-            LimpiarFormulario();
             dgvPrestamoDetalle.AutoGenerateColumns = true;
             cmbMoneda.DataSource = Moneda.ListarMoneda();
-            cmbTipoPrestamo.DataSource = TipoPrestamo.ObtenerTipoPrestamo();
-            cmbCliente.DataSource = BibliotecaClases.Cliente.ListarCliente();
+            cmbTipoPrestamo.DataSource = TipoPrestamo.ObtenerTipoPrestamos();
+            LimpiarFormulario();
+            BloquearFormulario();
         }
 
         public void CargarcmbCantCuota()
@@ -44,14 +46,15 @@ namespace Prestamos
             Prestamo prestamo = new Prestamo();
             prestamo.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
             prestamo.Fecha = dtpFecha.Value.Date;
-            prestamo.cliente = (BibliotecaClases.Cliente)cmbCliente.SelectedItem;
+            
             prestamo.tipoPrestamo = (TipoPrestamo)cmbTipoPrestamo.SelectedItem;
             prestamo.MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
             prestamo.moneda = (Moneda)cmbMoneda.SelectedItem;
-            prestamo.InteresBase = Convert.ToDouble(txtInteres.Text);
+            prestamo.InteresBase = Convert.ToInt32(txtInteres.Text);
             prestamo.CantidadCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
             prestamo.Saldo = Convert.ToDouble(txtSaldo.Text);
             prestamo.MontoTotal = Convert.ToDouble(txtMontoTotal.Text);
+            prestamo.cliente = txtCiCliente.Text;
 
             return prestamo;
         }
@@ -60,43 +63,61 @@ namespace Prestamos
         {
             Prestamo prestamo = ObtenerFormulario();
             Prestamo.Agregar(prestamo);
+            PrestamoDetalle.GuardarBd();
             LimpiarFormulario();
-
+            BloquearFormulario();
             prestamo = new Prestamo();
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            Prestamo prestamo = new Prestamo();
-            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-            double Total = 0;
-            int MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
-            double Interes = Convert.ToDouble(txtInteres.Text);
-            double InteresGenerado = 0;
-            int CantCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
-            Double MontoCuota;
-            InteresGenerado = MontoSolicitado * (Interes / 100);
-            Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
 
-            MontoCuota = Math.Round((Total / CantCuota), 0);
-
-            txtMontoTotal.Text = (MontoCuota * CantCuota).ToString("N", nfi);
-
-            for (int i = 1; i <= CantCuota; i++)
+            DialogResult resultado = MessageBox.Show("Confirma la generación de las cuotas?", "Generacion de cuotas", MessageBoxButtons.YesNo);
+            if (resultado == System.Windows.Forms.DialogResult.Yes)
             {
-                PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
-                prestamoDetalle.NroCuota = i;
-                prestamoDetalle.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
-                prestamoDetalle.MontoDetalle = MontoCuota;
-                prestamoDetalle.SaldoDetalle = MontoCuota;
-                prestamoDetalle.estado = EstadoPrestamo.No_pagado;
-                prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
-                PrestamoDetalle.Agregar(prestamoDetalle);
+                if (cmbTipoPrestamo.SelectedItem != null && cmbMoneda.SelectedItem != null && cmbCantCuota.SelectedItem != null)
+                {
+                    Prestamo.ListaPrestamo.Clear();
+                    Prestamo prestamo = new Prestamo();
+                    CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+                    double Total = 0;
+                    int MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
+                    double Interes = Convert.ToDouble(txtInteres.Text);
+                    double InteresGenerado = 0;
+                    int CantCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
+                    Double MontoCuota;
+                    InteresGenerado = MontoSolicitado * (Interes / 100);
+                    Total = MontoSolicitado + (MontoSolicitado * (Interes / 100));
 
+                    MontoCuota = Math.Round((Total / CantCuota), 0);
+
+                    txtInteresGenerado.Text = String.Format(elGR, "{0:0,0}", InteresGenerado);
+                    Total = MontoCuota * CantCuota;
+                    txtMontoTotal.Text = String.Format(elGR, "{0:0,0}", Total);//FORMATEA EL MONTO TOTAL CON SEPARADOR DE MILES
+                    txtSaldo.Text = txtMontoTotal.Text;
+
+                    for (int i = 1; i <= CantCuota; i++)
+                    {
+                        PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
+                        prestamoDetalle.NroCuota = i;
+                        prestamoDetalle.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
+                        prestamoDetalle.MontoDetalle = MontoCuota;
+                        prestamoDetalle.SaldoDetalle = MontoCuota;
+                        prestamoDetalle.estado = EstadoPrestamo.No_pagado;
+                        prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
+                        PrestamoDetalle.Agregar(prestamoDetalle);
+
+                    }
+
+                    ActualizarDgv();
+                    btnModificar.Enabled = true;
+                    btnConfirmar.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-            ActualizarDgv();
-
         }
 
         private void ActualizarDgv()
@@ -116,7 +137,9 @@ namespace Prestamos
             dtpFecha.Value = System.DateTime.Now;
             cmbTipoPrestamo.SelectedItem = null;
             cmbCantCuota.SelectedItem = null;
-            cmbCliente.SelectedItem = null;
+            txtCiCliente.Text = null;
+            txtNombreCliente.Text = null;
+            txtInteresGenerado.Text = null;
             cmbMoneda.SelectedItem = null;
             dgvPrestamoDetalle.DataSource = null;
         }
@@ -127,19 +150,139 @@ namespace Prestamos
             PrestamoDetalle prestamoDetalle = (PrestamoDetalle)dgvPrestamoDetalle.CurrentRow.DataBoundItem;
             txtNumero.Text = Convert.ToString(prestamoDetalle.NumeroPrestamo);
             //dtpFecha.Value = prestamoDetalle.Fecha;
-            cmbCliente.SelectedItem = prestamoDetalle.cliente;
+            
 
 
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            LimpiarFormulario();
+            DialogResult resultado = MessageBox.Show("Los datos introducidos se perderán, continuar?", "Cancelar", MessageBoxButtons.YesNo);
+            if (resultado == System.Windows.Forms.DialogResult.Yes)
+            {
+                LimpiarFormulario();
+            }
         }
 
-        private void txtMontoTotal_TextChanged(object sender, EventArgs e)
+        private void cmbTipoPrestamo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string SQLTipoPrestamo = "SELECT tpre_interes FROM tipo_prestamo WHERE tpre_descripcion='" + cmbTipoPrestamo.SelectedItem + "'";
+                SqlCommand cmd = new SqlCommand(SQLTipoPrestamo, con);
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+                
+                while (elLectorDeDatos.Read())
+                {
+                    txtInteres.Text = Convert.ToString(elLectorDeDatos.GetInt32(0));
+                }
+            }
+        }
 
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMontoSolicitado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCiCliente_Leave(object sender, EventArgs e)
+        {
+            foreach (Cliente cli in Cliente.ListaCliente)
+            {
+                if (cli.Documento == txtCiCliente.Text)
+                {
+                    txtNombreCliente.Text = cli.RazonSocial;
+                    DesbloquearFormulario();
+                }
+                else
+                {
+                    txtNombreCliente.Text = "Inexistente";
+                }
+
+            }
+        }
+
+        private void txtCiCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void BloquearFormulario()
+        {
+            cmbTipoPrestamo.Enabled = false;
+            txtMontoSolicitado.Enabled = false;
+            cmbMoneda.Enabled = false;
+            cmbCantCuota.Enabled = false;
+            btnGenerar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnConfirmar.Enabled = false;
+        }
+
+        private void DesbloquearFormulario()
+        {
+            cmbTipoPrestamo.Enabled = true;
+            txtMontoSolicitado.Enabled = true;
+            cmbMoneda.Enabled = true;
+            cmbCantCuota.Enabled = true;
+            btnGenerar.Enabled = true;
+            
+        }
+
+        private void txtMontoSolicitado_Leave(object sender, EventArgs e)
+        {
+            /*CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+            int monto = Convert.ToInt32(txtMontoSolicitado.Text);
+            txtMontoSolicitado.Text = String.Format(elGR, "{0:0,0}", monto);*/
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class frmCliente : Form
+    public partial class frmCliente : MetroFramework.Forms.MetroForm
     {
         public frmCliente()
         {

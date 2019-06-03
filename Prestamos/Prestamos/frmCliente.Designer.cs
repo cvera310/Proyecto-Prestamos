@@ -37,11 +37,14 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grbDatoslabrales = new System.Windows.Forms.GroupBox();
-            this.lblLugarDeTrabajo = new System.Windows.Forms.Label();
-            this.lblAntiguedadLaboral = new System.Windows.Forms.Label();
-            this.lblInformconf = new System.Windows.Forms.Label();
-            this.rdbInformconfNO = new System.Windows.Forms.RadioButton();
+            this.lblAntiguedad = new System.Windows.Forms.Label();
+            this.txtAntiguedad = new System.Windows.Forms.TextBox();
+            this.txtLugarTrabajo = new System.Windows.Forms.TextBox();
             this.rdbInformConfSI = new System.Windows.Forms.RadioButton();
+            this.rdbInformconfNO = new System.Windows.Forms.RadioButton();
+            this.lblInformconf = new System.Windows.Forms.Label();
+            this.lblAntiguedadLaboral = new System.Windows.Forms.Label();
+            this.lblLugarDeTrabajo = new System.Windows.Forms.Label();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.txtNroDocumento = new System.Windows.Forms.TextBox();
@@ -51,13 +54,9 @@
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.txtLugarTrabajo = new System.Windows.Forms.TextBox();
-            this.txtAntiguedad = new System.Windows.Forms.TextBox();
-            this.lblAntiguedad = new System.Windows.Forms.Label();
             this.btnBorrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grbDatoslabrales.SuspendLayout();
@@ -66,7 +65,7 @@
             // lblNumCliente
             // 
             this.lblNumCliente.AutoSize = true;
-            this.lblNumCliente.Location = new System.Drawing.Point(49, 42);
+            this.lblNumCliente.Location = new System.Drawing.Point(43, 65);
             this.lblNumCliente.Name = "lblNumCliente";
             this.lblNumCliente.Size = new System.Drawing.Size(67, 13);
             this.lblNumCliente.TabIndex = 0;
@@ -74,7 +73,7 @@
             // 
             // txtNumCliente
             // 
-            this.txtNumCliente.Location = new System.Drawing.Point(187, 35);
+            this.txtNumCliente.Location = new System.Drawing.Point(181, 58);
             this.txtNumCliente.Name = "txtNumCliente";
             this.txtNumCliente.Size = new System.Drawing.Size(170, 20);
             this.txtNumCliente.TabIndex = 1;
@@ -83,7 +82,7 @@
             // lbDocumento
             // 
             this.lbDocumento.AutoSize = true;
-            this.lbDocumento.Location = new System.Drawing.Point(49, 99);
+            this.lbDocumento.Location = new System.Drawing.Point(43, 122);
             this.lbDocumento.Name = "lbDocumento";
             this.lbDocumento.Size = new System.Drawing.Size(85, 13);
             this.lbDocumento.TabIndex = 2;
@@ -92,7 +91,7 @@
             // lblRazonSocial
             // 
             this.lblRazonSocial.AutoSize = true;
-            this.lblRazonSocial.Location = new System.Drawing.Point(49, 152);
+            this.lblRazonSocial.Location = new System.Drawing.Point(43, 175);
             this.lblRazonSocial.Name = "lblRazonSocial";
             this.lblRazonSocial.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblRazonSocial.Size = new System.Drawing.Size(70, 13);
@@ -102,7 +101,7 @@
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(49, 178);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(43, 201);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(63, 13);
             this.lblFechaNacimiento.TabIndex = 4;
@@ -111,7 +110,7 @@
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(49, 205);
+            this.lblTelefono.Location = new System.Drawing.Point(43, 228);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(49, 13);
             this.lblTelefono.TabIndex = 5;
@@ -120,7 +119,7 @@
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(49, 232);
+            this.lblDireccion.Location = new System.Drawing.Point(43, 255);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(52, 13);
             this.lblDireccion.TabIndex = 6;
@@ -128,7 +127,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(413, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(407, 49);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(122, 123);
             this.pictureBox1.TabIndex = 7;
@@ -144,49 +143,35 @@
             this.grbDatoslabrales.Controls.Add(this.lblInformconf);
             this.grbDatoslabrales.Controls.Add(this.lblAntiguedadLaboral);
             this.grbDatoslabrales.Controls.Add(this.lblLugarDeTrabajo);
-            this.grbDatoslabrales.Location = new System.Drawing.Point(51, 252);
+            this.grbDatoslabrales.Location = new System.Drawing.Point(45, 275);
             this.grbDatoslabrales.Name = "grbDatoslabrales";
             this.grbDatoslabrales.Size = new System.Drawing.Size(484, 142);
             this.grbDatoslabrales.TabIndex = 8;
             this.grbDatoslabrales.TabStop = false;
             // 
-            // lblLugarDeTrabajo
+            // lblAntiguedad
             // 
-            this.lblLugarDeTrabajo.AutoSize = true;
-            this.lblLugarDeTrabajo.Location = new System.Drawing.Point(16, 20);
-            this.lblLugarDeTrabajo.Name = "lblLugarDeTrabajo";
-            this.lblLugarDeTrabajo.Size = new System.Drawing.Size(88, 13);
-            this.lblLugarDeTrabajo.TabIndex = 0;
-            this.lblLugarDeTrabajo.Text = "Lugar de Trabajo";
+            this.lblAntiguedad.AutoSize = true;
+            this.lblAntiguedad.Location = new System.Drawing.Point(325, 63);
+            this.lblAntiguedad.Name = "lblAntiguedad";
+            this.lblAntiguedad.Size = new System.Drawing.Size(38, 13);
+            this.lblAntiguedad.TabIndex = 7;
+            this.lblAntiguedad.Text = "Meses";
             // 
-            // lblAntiguedadLaboral
+            // txtAntiguedad
             // 
-            this.lblAntiguedadLaboral.AutoSize = true;
-            this.lblAntiguedadLaboral.Location = new System.Drawing.Point(16, 63);
-            this.lblAntiguedadLaboral.Name = "lblAntiguedadLaboral";
-            this.lblAntiguedadLaboral.Size = new System.Drawing.Size(95, 13);
-            this.lblAntiguedadLaboral.TabIndex = 1;
-            this.lblAntiguedadLaboral.Text = "Antigüedad laboral";
+            this.txtAntiguedad.Location = new System.Drawing.Point(136, 56);
+            this.txtAntiguedad.Name = "txtAntiguedad";
+            this.txtAntiguedad.Size = new System.Drawing.Size(170, 20);
+            this.txtAntiguedad.TabIndex = 10;
+            this.txtAntiguedad.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // lblInformconf
+            // txtLugarTrabajo
             // 
-            this.lblInformconf.AutoSize = true;
-            this.lblInformconf.Location = new System.Drawing.Point(16, 106);
-            this.lblInformconf.Name = "lblInformconf";
-            this.lblInformconf.Size = new System.Drawing.Size(104, 13);
-            this.lblInformconf.TabIndex = 2;
-            this.lblInformconf.Text = "Figura en Informconf";
-            // 
-            // rdbInformconfNO
-            // 
-            this.rdbInformconfNO.AutoSize = true;
-            this.rdbInformconfNO.Location = new System.Drawing.Point(166, 106);
-            this.rdbInformconfNO.Name = "rdbInformconfNO";
-            this.rdbInformconfNO.Size = new System.Drawing.Size(41, 17);
-            this.rdbInformconfNO.TabIndex = 11;
-            this.rdbInformconfNO.TabStop = true;
-            this.rdbInformconfNO.Text = "NO";
-            this.rdbInformconfNO.UseVisualStyleBackColor = true;
+            this.txtLugarTrabajo.Location = new System.Drawing.Point(136, 13);
+            this.txtLugarTrabajo.Name = "txtLugarTrabajo";
+            this.txtLugarTrabajo.Size = new System.Drawing.Size(170, 20);
+            this.txtLugarTrabajo.TabIndex = 9;
             // 
             // rdbInformConfSI
             // 
@@ -199,10 +184,48 @@
             this.rdbInformConfSI.Text = "SI";
             this.rdbInformConfSI.UseVisualStyleBackColor = true;
             // 
+            // rdbInformconfNO
+            // 
+            this.rdbInformconfNO.AutoSize = true;
+            this.rdbInformconfNO.Location = new System.Drawing.Point(166, 106);
+            this.rdbInformconfNO.Name = "rdbInformconfNO";
+            this.rdbInformconfNO.Size = new System.Drawing.Size(41, 17);
+            this.rdbInformconfNO.TabIndex = 11;
+            this.rdbInformconfNO.TabStop = true;
+            this.rdbInformconfNO.Text = "NO";
+            this.rdbInformconfNO.UseVisualStyleBackColor = true;
+            // 
+            // lblInformconf
+            // 
+            this.lblInformconf.AutoSize = true;
+            this.lblInformconf.Location = new System.Drawing.Point(16, 106);
+            this.lblInformconf.Name = "lblInformconf";
+            this.lblInformconf.Size = new System.Drawing.Size(104, 13);
+            this.lblInformconf.TabIndex = 2;
+            this.lblInformconf.Text = "Figura en Informconf";
+            // 
+            // lblAntiguedadLaboral
+            // 
+            this.lblAntiguedadLaboral.AutoSize = true;
+            this.lblAntiguedadLaboral.Location = new System.Drawing.Point(16, 63);
+            this.lblAntiguedadLaboral.Name = "lblAntiguedadLaboral";
+            this.lblAntiguedadLaboral.Size = new System.Drawing.Size(95, 13);
+            this.lblAntiguedadLaboral.TabIndex = 1;
+            this.lblAntiguedadLaboral.Text = "Antigüedad laboral";
+            // 
+            // lblLugarDeTrabajo
+            // 
+            this.lblLugarDeTrabajo.AutoSize = true;
+            this.lblLugarDeTrabajo.Location = new System.Drawing.Point(16, 20);
+            this.lblLugarDeTrabajo.Name = "lblLugarDeTrabajo";
+            this.lblLugarDeTrabajo.Size = new System.Drawing.Size(88, 13);
+            this.lblLugarDeTrabajo.TabIndex = 0;
+            this.lblLugarDeTrabajo.Text = "Lugar de Trabajo";
+            // 
             // lblTipoDocumento
             // 
             this.lblTipoDocumento.AutoSize = true;
-            this.lblTipoDocumento.Location = new System.Drawing.Point(49, 72);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(43, 95);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
             this.lblTipoDocumento.Size = new System.Drawing.Size(86, 13);
             this.lblTipoDocumento.TabIndex = 9;
@@ -211,21 +234,21 @@
             // cmbTipoDocumento
             // 
             this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(187, 64);
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(181, 87);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(170, 21);
             this.cmbTipoDocumento.TabIndex = 2;
             // 
             // txtNroDocumento
             // 
-            this.txtNroDocumento.Location = new System.Drawing.Point(187, 92);
+            this.txtNroDocumento.Location = new System.Drawing.Point(181, 115);
             this.txtNroDocumento.Name = "txtNroDocumento";
             this.txtNroDocumento.Size = new System.Drawing.Size(170, 20);
             this.txtNroDocumento.TabIndex = 3;
             // 
             // txtRazonSocial
             // 
-            this.txtRazonSocial.Location = new System.Drawing.Point(187, 145);
+            this.txtRazonSocial.Location = new System.Drawing.Point(181, 168);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(170, 20);
             this.txtRazonSocial.TabIndex = 5;
@@ -233,7 +256,7 @@
             // lblSexo
             // 
             this.lblSexo.AutoSize = true;
-            this.lblSexo.Location = new System.Drawing.Point(49, 126);
+            this.lblSexo.Location = new System.Drawing.Point(43, 149);
             this.lblSexo.Name = "lblSexo";
             this.lblSexo.Size = new System.Drawing.Size(31, 13);
             this.lblSexo.TabIndex = 13;
@@ -242,40 +265,31 @@
             // cmbSexo
             // 
             this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Location = new System.Drawing.Point(187, 118);
+            this.cmbSexo.Location = new System.Drawing.Point(181, 141);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(170, 21);
             this.cmbSexo.TabIndex = 4;
             // 
             // dtpFechaNacimiento
             // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(187, 171);
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(181, 194);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(170, 20);
             this.dtpFechaNacimiento.TabIndex = 6;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(187, 198);
+            this.txtTelefono.Location = new System.Drawing.Point(181, 221);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(170, 20);
             this.txtTelefono.TabIndex = 7;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(187, 225);
+            this.txtDireccion.Location = new System.Drawing.Point(181, 248);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(170, 20);
             this.txtDireccion.TabIndex = 8;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(184, 9);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(95, 13);
-            this.lblTitulo.TabIndex = 18;
-            this.lblTitulo.Text = "Formulario Clientes";
             // 
             // btnAgregar
             // 
@@ -307,30 +321,6 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // txtLugarTrabajo
-            // 
-            this.txtLugarTrabajo.Location = new System.Drawing.Point(136, 13);
-            this.txtLugarTrabajo.Name = "txtLugarTrabajo";
-            this.txtLugarTrabajo.Size = new System.Drawing.Size(170, 20);
-            this.txtLugarTrabajo.TabIndex = 9;
-            // 
-            // txtAntiguedad
-            // 
-            this.txtAntiguedad.Location = new System.Drawing.Point(136, 56);
-            this.txtAntiguedad.Name = "txtAntiguedad";
-            this.txtAntiguedad.Size = new System.Drawing.Size(170, 20);
-            this.txtAntiguedad.TabIndex = 10;
-            this.txtAntiguedad.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // lblAntiguedad
-            // 
-            this.lblAntiguedad.AutoSize = true;
-            this.lblAntiguedad.Location = new System.Drawing.Point(325, 63);
-            this.lblAntiguedad.Name = "lblAntiguedad";
-            this.lblAntiguedad.Size = new System.Drawing.Size(38, 13);
-            this.lblAntiguedad.TabIndex = 7;
-            this.lblAntiguedad.Text = "Meses";
-            // 
             // btnBorrar
             // 
             this.btnBorrar.Location = new System.Drawing.Point(322, 426);
@@ -345,12 +335,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 484);
+            this.ClientSize = new System.Drawing.Size(555, 508);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.dtpFechaNacimiento);
@@ -369,8 +358,12 @@
             this.Controls.Add(this.lbDocumento);
             this.Controls.Add(this.txtNumCliente);
             this.Controls.Add(this.lblNumCliente);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCliente";
-            this.Text = "frmCliente";
+            this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
+            this.Text = "Cliente";
             this.Load += new System.EventHandler(this.frmCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grbDatoslabrales.ResumeLayout(false);
@@ -405,7 +398,6 @@
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnLimpiar;

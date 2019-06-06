@@ -158,5 +158,10 @@ namespace Prestamos
             BloquearFormulario();
             
         }
+
+        private void dtgDetalleMoneda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace Prestamos
 {
     public partial class frmCliente : MetroFramework.Forms.MetroForm
     {
+
+        string modo;
         public frmCliente()
         {
             InitializeComponent();
@@ -20,7 +22,14 @@ namespace Prestamos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (VerificarExistenciaCliente() == true)
+
+            modo = "I";
+        
+
+            LimpiarFormulario();
+            DesbloquearFormulario();
+            
+            /*if (VerificarExistenciaCliente() == true)
             {
                 MessageBox.Show("Numero de cliente ya existe");
             }
@@ -30,7 +39,7 @@ namespace Prestamos
                 Cliente cliente = ObtenerClienteForm();
                 Cliente.Agregar(cliente);
                 LimpiarFormulario();
-            }
+            }*/
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -41,7 +50,7 @@ namespace Prestamos
 
         private void txtNumCliente_Leave(object sender, EventArgs e)
         {
-            List<Cliente> listaclientes = Cliente.ListarCliente();
+            /*List<Cliente> listaclientes = Cliente.ListarCliente();
             foreach (Cliente cli in listaclientes)
                 if (cli.NumeroCliente == Convert.ToInt32(txtNumCliente.Text))
                 {
@@ -55,37 +64,46 @@ namespace Prestamos
                     txtDireccion.Text = cli.Direccion;
                     txtLugarTrabajo.Text = cli.LugarTrabajo;
                     txtAntiguedad.Text = Convert.ToString(cli.AntiguedadLaboral);
-                    if (cli.Informconf == false)
-                    {
-                        rdbInformconfNO.Checked = true;
-                    }
-                    else if (cli.Informconf == true)
-                    {
-                        rdbInformConfSI.Checked = true;
-                    }
+                    
                     btnAgregar.Enabled = false;
                     btnGuardar.Enabled = true;
                 }
               else
               {
-                    //     MessageBox.Show("Cliente no encontrado");
-                    //      LimpiarFormulario();
+                    
                     btnAgregar.Enabled = true;
                     LimpiarFormularioParcial();
                     btnGuardar.Enabled = false;
-                }
+                }*/
 
-         }
+        }
 
         private void frmCliente_Load(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente();
+            dgvCliente.AutoGenerateColumns = true;
             cmbSexo.DataSource = Enum.GetValues(typeof(Sexo));
             cmbTipoDocumento.DataSource = Enum.GetValues(typeof(TipoDocumento));
             cmbTipoDocumento.SelectedItem = null;
             cmbSexo.SelectedItem = null;
-            rdbInformconfNO.Checked = true;
-            rdbInformConfSI.Checked = false;
-            btnGuardar.Enabled = false;
+            BloquearFormulario();
+
+            if (Cliente.ListarCliente() !=null)
+            {
+                ActualizarDataGrid();
+            }
+            
+            
+            
+            
+            /*dgvCliente.AutoGenerateColumns = true;
+            cmbSexo.DataSource = Enum.GetValues(typeof(Sexo));
+            cmbTipoDocumento.DataSource = Enum.GetValues(typeof(TipoDocumento));
+            cmbTipoDocumento.SelectedItem = null;
+            cmbSexo.SelectedItem = null;
+            //rdbInformconfNO.Checked = true;
+            //rdbInformConfSI.Checked = false;
+            btnGuardar.Enabled = false;*/
 
         }
 
@@ -106,7 +124,7 @@ namespace Prestamos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            List<Cliente> listaclientes = Cliente.ListarCliente();
+            /*List<Cliente> listaclientes = Cliente.ListarCliente();
             foreach (Cliente cli in listaclientes)
                 if (cli.NumeroCliente == Convert.ToInt32(txtNumCliente.Text))
                 {
@@ -114,7 +132,25 @@ namespace Prestamos
                     Cliente.Agregar(ObtenerClienteForm());
 
 
-                }
+                }*/
+
+            if (modo == "I")
+            {
+                Cliente cliente = ObtenerClienteForm();
+                Cliente.Agregar(cliente);
+            }
+            else if (modo == "E")
+            {
+                int index = dgvCliente.CurrentRow.Index;
+                Cliente cliente = ObtenerClienteForm();
+                
+            }
+
+            ActualizarDataGrid();
+            LimpiarFormulario();
+            BloquearFormulario();
+
+
 
         }
 
@@ -122,18 +158,24 @@ namespace Prestamos
         {
 
             Cliente cliente = new Cliente();
-            cliente.NumeroCliente = Convert.ToInt32(txtNumCliente.Text);
+            if (!string.IsNullOrEmpty(txtNumCliente.Text))
+            {
+                cliente.NumeroCliente = Convert.ToInt32(txtNumCliente.Text);
+            }
+            //cliente.NumeroCliente = Convert.ToInt32(txtNumCliente.Text);
+            cliente.Nombre = txtNombre.Text;
+            cliente.Apellido = txtApellido.Text;
             cliente.TipoDeDocumento = (TipoDocumento)cmbTipoDocumento.SelectedItem;
             cliente.Documento = txtNroDocumento.Text;
-            cliente.Sexo = (Sexo)cmbSexo.SelectedItem;
+            cliente.sexo = (Sexo)cmbSexo.SelectedItem;
             cliente.RazonSocial = txtRazonSocial.Text;
             cliente.Nacimiento = dtpFechaNacimiento.Value;
             cliente.Telefono = txtTelefono.Text;
             cliente.Direccion = txtDireccion.Text;
-            cliente.Foto = "texto_en_duro_por_ahora";
+            //cliente.Foto = "texto_en_duro_por_ahora";
             cliente.LugarTrabajo = txtLugarTrabajo.Text;
             cliente.AntiguedadLaboral = Convert.ToInt32(txtAntiguedad.Text);
-            if (rdbInformconfNO.Checked)
+            /*if (rdbInformconfNO.Checked)
             {
                 cliente.Informconf = false;
 
@@ -141,7 +183,7 @@ namespace Prestamos
             else if (rdbInformConfSI.Checked)
             {
                 cliente.Informconf = true;
-            }
+            }*/
 
             return cliente;
 
@@ -151,6 +193,9 @@ namespace Prestamos
         {
 
             txtNumCliente.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtDirLaboral.Text = "";
             cmbTipoDocumento.SelectedItem = null;
             txtNroDocumento.Text = "";
             cmbSexo.SelectedItem = null;
@@ -160,8 +205,6 @@ namespace Prestamos
             txtDireccion.Text = "";
             txtLugarTrabajo.Text = "";
             txtAntiguedad.Text = "";
-            rdbInformconfNO.Checked = true;
-            rdbInformConfSI.Checked = false;
             btnAgregar.Enabled = true;
         }
 
@@ -178,8 +221,8 @@ namespace Prestamos
             txtDireccion.Text = "";
             txtLugarTrabajo.Text = "";
             txtAntiguedad.Text = "";
-            rdbInformconfNO.Checked = true;
-            rdbInformConfSI.Checked = false;
+            //rdbInformconfNO.Checked = true;
+            //rdbInformConfSI.Checked = false;
             btnAgregar.Enabled = true;
         }
 
@@ -190,13 +233,82 @@ namespace Prestamos
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            List<Cliente> listaclientes = Cliente.ListarCliente();
+            /*List<Cliente> listaclientes = Cliente.ListarCliente();
             foreach (Cliente cli in listaclientes)
                 if (cli.NumeroCliente == Convert.ToInt32(txtNumCliente.Text))
                 {
                     Cliente.Eliminar(cli);
 
+                }*/
+
+            Cliente cliente = (Cliente)dgvCliente.CurrentRow.DataBoundItem;
+            DialogResult resultado = MessageBox.Show("Confirma la eliminacion del registro?", "Eliminar registro", MessageBoxButtons.YesNo);
+            if (resultado == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (cliente != null)
+                {
+                    Cliente.Eliminar(cliente);
                 }
+                ActualizarDataGrid();
+                LimpiarFormulario();
+                BloquearFormulario();
+            }
+
+
+
+        }
+
+        private void BloquearFormulario()
+        {
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            txtRazonSocial.Enabled = false;
+            dtpFechaNacimiento.Enabled = false;
+            txtNroDocumento.Enabled = false;
+            cmbSexo.Enabled = false;
+            cmbTipoDocumento.Enabled = false;
+            txtTelefono.Enabled = false;
+            txtDirLaboral.Enabled = false;
+            txtAntiguedad.Enabled = false;
+            txtLugarTrabajo.Enabled = false;
+            txtLugarTrabajo.Enabled = false;
+
+        }
+
+        private void DesbloquearFormulario()
+        {
+            txtNombre.Enabled = true;
+            txtApellido.Enabled = true;
+            txtRazonSocial.Enabled = true;
+            dtpFechaNacimiento.Enabled = true;
+            txtNroDocumento.Enabled = true;
+            cmbSexo.Enabled = true;
+            cmbTipoDocumento.Enabled = true;
+            txtTelefono.Enabled = true;
+            txtDirLaboral.Enabled = true;
+            txtAntiguedad.Enabled = true;
+            txtLugarTrabajo.Enabled = true;
+            txtLugarTrabajo.Enabled = true;
+        }
+
+        private void ActualizarDataGrid()
+        {
+            dgvCliente.DataSource = null;
+            dgvCliente.DataSource = Cliente.ListarCliente();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            modo = "E";
+            DesbloquearFormulario();
+
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            BloquearFormulario();
         }
     }
 }

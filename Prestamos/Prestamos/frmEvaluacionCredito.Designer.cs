@@ -381,6 +381,7 @@
             this.cmbTipoPago.Name = "cmbTipoPago";
             this.cmbTipoPago.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoPago.TabIndex = 6;
+            this.cmbTipoPago.SelectedIndexChanged += new System.EventHandler(this.cmbTipoPago_SelectedIndexChanged);
             // 
             // txtTotalIngresos
             // 
@@ -460,7 +461,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 472);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnSalir);

@@ -56,10 +56,21 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblusuario = new System.Windows.Forms.ToolStripStatusLabel();
             pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = global::Prestamos.Properties.Resources.logo;
+            pictureBox1.Location = new System.Drawing.Point(344, 296);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(517, 171);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            pictureBox1.WaitOnLoad = true;
             // 
             // menuStrip1
             // 
@@ -127,14 +138,14 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.tsmPrestamo_Click);
             // 
             // tipoDePrestamoToolStripMenuItem
             // 
             this.tipoDePrestamoToolStripMenuItem.Name = "tipoDePrestamoToolStripMenuItem";
-            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tipoDePrestamoToolStripMenuItem.Text = "Tipo de prestamo";
             this.tipoDePrestamoToolStripMenuItem.Click += new System.EventHandler(this.tsmTipoPrestamo_Click);
             // 
@@ -149,7 +160,7 @@
             // registrarToolStripMenuItem1
             // 
             this.registrarToolStripMenuItem1.Name = "registrarToolStripMenuItem1";
-            this.registrarToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.registrarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.registrarToolStripMenuItem1.Text = "Registrar";
             // 
             // reportesToolStripMenuItem
@@ -207,7 +218,7 @@
             // acercaDeToolStripMenuItem1
             // 
             this.acercaDeToolStripMenuItem1.Name = "acercaDeToolStripMenuItem1";
-            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.acercaDeToolStripMenuItem1.Text = "Acerca de";
             // 
             // timer1
@@ -254,17 +265,6 @@
             this.lblusuario.Text = "usuario";
             this.lblusuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = global::Prestamos.Properties.Resources.logo;
-            pictureBox1.Location = new System.Drawing.Point(344, 296);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(517, 171);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
-            pictureBox1.WaitOnLoad = true;
-            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,11 +282,11 @@
             this.TransparencyKey = System.Drawing.Color.Silver;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMenu_Load);
+            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

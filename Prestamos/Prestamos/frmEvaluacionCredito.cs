@@ -76,7 +76,7 @@ namespace Prestamos
             txtRazonSocial.Text = cliente.RazonSocial;
             txtDireccion.Text = cliente.Direccion;
             txtTelefono.Text = cliente.Telefono;
-            cmbTipoDoc.SelectedItem = cliente.tipo_documento;
+            cmbTipoDoc.SelectedItem = cliente.TipoDeDocumento;
             cmbSexo.SelectedItem = cliente.sexo;
             dtpFechaNac.Value = cliente.Nacimiento;
 
@@ -101,8 +101,9 @@ namespace Prestamos
             return evaluacion;
         }
 
+        private void cmbTipoPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }

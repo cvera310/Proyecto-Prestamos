@@ -149,7 +149,7 @@ namespace BibliotecaClases
 
         public override string ToString()
         {
-            return NumeroCliente + ", " + RazonSocial;
+            return  Nombre;
         }
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)

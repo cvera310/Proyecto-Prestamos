@@ -25,9 +25,9 @@ namespace Prestamos
 
         private void frmEvaluacionCredito_Load(object sender, EventArgs e)
         {
-            cmbTipoDoc.DataSource = Enum.GetValues(typeof(TipoDocumento));
-            cmbSexo.DataSource = Enum.GetValues(typeof(Sexo));
-            cmbTipoPago.DataSource = Enum.GetValues(typeof(EvaluacionCredito.TipoPago));
+            
+           
+            
             cmbCliente.DataSource = BibliotecaClases.Cliente.ListarCliente();
 
 
@@ -47,13 +47,13 @@ namespace Prestamos
         private void btnTotalEngreso_Click(object sender, EventArgs e)
         {
             EvaluacionCredito ec = new EvaluacionCredito();
-            ec.Alimentacion = Convert.ToInt16(txtAlimentacion.Text);
-            ec.Alquiler = Convert.ToInt16(txtAlquiler.Text);
-            ec.Transporte = Convert.ToInt16(txtTransporte.Text);
-            ec.ServiciosBasicos = Convert.ToInt16(txtServicios.Text);
-            ec.Otros = Convert.ToInt16(txtOtros.Text);
-            ec.TotalEgresos = (Convert.ToInt16(txtAlimentacion.Text)) + (Convert.ToInt16(txtAlquiler.Text)) + (Convert.ToInt16(txtTransporte.Text)) 
-                + (Convert.ToInt16(txtServicios.Text)) + (Convert.ToInt16(txtOtros.Text));
+            //ec.Alimentacion = Convert.ToInt16(txtAlimentacion.Text);
+            //ec.Alquiler = Convert.ToInt16(txtAlquiler.Text);
+            //ec.Transporte = Convert.ToInt16(txtTransporte.Text);
+            //ec.ServiciosBasicos = Convert.ToInt16(txtServicios.Text);
+            //ec.Otros = Convert.ToInt16(txtOtros.Text);
+            //ec.TotalEgresos = (Convert.ToInt16(txtAlimentacion.Text)) + (Convert.ToInt16(txtAlquiler.Text)) + (Convert.ToInt16(txtTransporte.Text)) 
+            //    + (Convert.ToInt16(txtServicios.Text)) + (Convert.ToInt16(txtOtros.Text));
             txtTotalEgresos.Text = Convert.ToString(ec.TotalEgresos);
 
 
@@ -62,10 +62,10 @@ namespace Prestamos
         private void btnTotalIngreso_Click(object sender, EventArgs e)
         {
             EvaluacionCredito ec = new EvaluacionCredito();
-            ec.Salario = Convert.ToInt16(txtSalario.Text);
-            ec.tipo_pago = (EvaluacionCredito.TipoPago)cmbTipoPago.SelectedItem;
-            ec.IngresoExtra = Convert.ToInt16(txtIngresoExtra.Text);
-            ec.TotalIngresos = (Convert.ToInt16(txtSalario.Text)) + (Convert.ToInt16(txtIngresoExtra.Text));
+            //ec.Salario = Convert.ToInt16(txtSalario.Text);
+            //ec.tipo_pago = (EvaluacionCredito.TipoPago)cmbTipoPago.SelectedItem;
+            //ec.IngresoExtra = Convert.ToInt16(txtIngresoExtra.Text);
+            //ec.TotalIngresos = (Convert.ToInt16(txtSalario.Text)) + (Convert.ToInt16(txtIngresoExtra.Text));
             txtTotalIngresos.Text = Convert.ToString(ec.TotalIngresos);
 
         }
@@ -76,9 +76,9 @@ namespace Prestamos
             txtRazonSocial.Text = cliente.RazonSocial;
             txtDireccion.Text = cliente.Direccion;
             txtTelefono.Text = cliente.Telefono;
-            cmbTipoDoc.SelectedItem = cliente.TipoDeDocumento;
-            cmbSexo.SelectedItem = cliente.sexo;
-            dtpFechaNac.Value = cliente.Nacimiento;
+            //cmbTipoDoc.SelectedItem = cliente.TipoDeDocumento;
+            //cmbSexo.SelectedItem = cliente.sexo;
+            //dtpFechaNac.Value = cliente.Nacimiento;
 
         }
 
@@ -86,14 +86,14 @@ namespace Prestamos
         {
             EvaluacionCredito evaluacion = new EvaluacionCredito();
             evaluacion.cliente = (Cliente)cmbCliente.SelectedItem;
-            evaluacion.Alimentacion = Convert.ToInt16(txtAlimentacion.Text);
-            evaluacion.Alquiler = Convert.ToInt16(txtAlquiler.Text);
-            evaluacion.ServiciosBasicos = Convert.ToInt16(txtServicios.Text);
-            evaluacion.Transporte = Convert.ToInt16(txtTransporte.Text);
-            evaluacion.Salario = Convert.ToInt16(txtSalario.Text);
-            evaluacion.Otros = Convert.ToInt16(txtOtros.Text);
-            evaluacion.IngresoExtra = Convert.ToInt16(txtIngresoExtra.Text);
-            evaluacion.tipo_pago = (EvaluacionCredito.TipoPago)cmbTipoPago.SelectedItem;
+            //evaluacion.Alimentacion = Convert.ToInt16(txtAlimentacion.Text);
+            //evaluacion.Alquiler = Convert.ToInt16(txtAlquiler.Text);
+            //evaluacion.ServiciosBasicos = Convert.ToInt16(txtServicios.Text);
+            //evaluacion.Transporte = Convert.ToInt16(txtTransporte.Text);
+            //evaluacion.Salario = Convert.ToInt16(txtSalario.Text);
+            //evaluacion.Otros = Convert.ToInt16(txtOtros.Text);
+            //evaluacion.IngresoExtra = Convert.ToInt16(txtIngresoExtra.Text);
+            //evaluacion.tipo_pago = (EvaluacionCredito.TipoPago)cmbTipoPago.SelectedItem;
             evaluacion.TotalEgresos = Convert.ToInt16(txtTotalEgresos.Text);
             evaluacion.TotalIngresos = Convert.ToInt16(txtTotalIngresos.Text);
 

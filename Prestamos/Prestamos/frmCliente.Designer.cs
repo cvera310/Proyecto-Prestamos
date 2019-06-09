@@ -337,18 +337,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(45, 95);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 23;
-            this.label1.Text = "Nombres";
+            this.label1.Text = "Nombre (s)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(45, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 24;
-            this.label2.Text = "Apellidos";
+            this.label2.Text = "Apellido (s)";
             // 
             // txtNombre
             // 

@@ -85,6 +85,45 @@ namespace BibliotecaClases
             return ListaUsuario;
         }
 
+        public static bool Acceder(String usuario, String clave)
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCmd = "SELECT * FROM usuario WHERE usu_codigo=@Usuario AND usu_clave=@Clave";
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                SqlParameter u1 = new SqlParameter("@Usuario", usuario.Trim());
+                SqlParameter u2 = new SqlParameter("@Clave", clave.Trim());
+                u1.SqlDbType = SqlDbType.VarChar;
+                u2.SqlDbType = SqlDbType.VarChar;
+                cmd.Parameters.Add(u1);
+                cmd.Parameters.Add(u2);
+                SqlDataReader lectordedatos = cmd.ExecuteReader();
+
+                if (lectordedatos.Read())
+                {
+                    string ActualizarUltAcceso = "UPDATE usuario SET usu_ultacceso='" + System.DateTime.Now + "' WHERE usu_codigo='@Usuario'";
+                    SqlCommand update = new SqlCommand(ActualizarUltAcceso, con);
+                    SqlParameter u3 = new SqlParameter("@Usuario", usuario.Trim());
+                    u3.SqlDbType = SqlDbType.VarChar;
+                    update.Parameters.Add(u3);
+                    update.ExecuteNonQuery();
+
+                    LoginUsuario lu = new LoginUsuario();
+                    lu.usuario = usuario.Trim();
+                    LoginUsuario.Agregar(lu);
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+
         public static Usuario ObtenerUsuario(string codigo)
         {
             Usuario usuario = null;

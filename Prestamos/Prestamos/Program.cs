@@ -12,13 +12,7 @@ namespace Prestamos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmLogin());
-
-            frmLogin menu = new frmLogin();
-            //frmMenu menu = new frmMenu();
-                
-            menu.Show();
-            Application.Run();
+            Application.Run(new frmLogin());
         }
     }
 }

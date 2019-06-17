@@ -43,6 +43,7 @@ namespace BibliotecaClases
         //public Boolean Informconf { get; set; }
         //public TipoDocumento tipo_documento { get; set; }
         public Sexo sexo { get; set; }
+        public string DireccionLaboral { get; set; }
 
 
         public static List<Cliente> ListaCliente = new List<Cliente>();
@@ -53,8 +54,8 @@ namespace BibliotecaClases
             {
                 con.Open();
                 string textoCmd = @"INSERT INTO Cliente(Nombre, Apellido, TipoDocumento, Documento, Sexo, RazonSocial, Nacimiento, Telefono, Direccion,
-                   LugarTrabajo, AntiguedadLaboral) VALUES (@Nombre, @Apellido, @TipoDeDocumento, @Documento, @Sexo, @RazonSocial, @Nacimiento, @Telefono, @Direccion,
-                   @LugarTrabajo, @AntiguedadLaboral)";
+                   LugarTrabajo, AntiguedadLaboral, DireccionLaboral) VALUES (@Nombre, @Apellido, @TipoDeDocumento, @Documento, @Sexo, @RazonSocial, @Nacimiento, @Telefono, @Direccion,
+                   @LugarTrabajo, @AntiguedadLaboral, @DireccionLaboral)";
 
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = c.ObtenerParametros(cmd);
@@ -84,17 +85,28 @@ namespace BibliotecaClases
             }
         }
 
-        public static void Editar(int index, Cliente c)
+        public static void Editar(Cliente c)
         {
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
-                con.Open();
+                /*con.Open();
                 string textoCmd = @"UPDATE Cliente SET Nombre = @Nombre, Apellido= @Apellido, TipoDocumento =@TipoDeDocumento, Documento = @Documento, Sexo = @Sexo, RazonSocial =@RazonSocial, Nacimiento =@Nacimiento, Telefono = @Telefono, 
-                Direccion = @Direccion, LugarTrabajo = @LugarTrabajo, AntiguedadLaboral = @AntiguedadLaboral
+                Direccion = @Direccion, LugarTrabajo = @LugarTrabajo, AntiguedadLaboral = @AntiguedadLaboral, DireccionLaboral = @DireccionLaboral
                 where NumeroCliente = @NumeroCliente";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = c.ObtenerParametros(cmd);
+
+                cmd.ExecuteNonQuery();*/
+                con.Open();
+                string textoCmd = @"UPDATE Cliente SET Nombre = @Nombre, Apellido= @Apellido, TipoDocumento =@TipoDeDocumento, Documento = @Documento, Sexo = @Sexo, RazonSocial =@RazonSocial, Nacimiento =@Nacimiento, Telefono = @Telefono, 
+                Direccion = @Direccion, LugarTrabajo = @LugarTrabajo, AntiguedadLaboral = @AntiguedadLaboral, DireccionLaboral = @DireccionLaboral
+                where NumeroCliente = @NumeroCliente";
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                SqlParameter c1 = new SqlParameter("@NumeroCliente", c.NumeroCliente);
+                cmd = c.ObtenerParametros(cmd);
+                c1.SqlDbType = SqlDbType.VarChar;
+                cmd.Parameters.Add(c1);
 
                 cmd.ExecuteNonQuery();
 
@@ -136,6 +148,7 @@ namespace BibliotecaClases
                     cliente.Direccion = elLectorDeDatos.GetString(9);
                     cliente.LugarTrabajo = elLectorDeDatos.GetString(10);
                     cliente.AntiguedadLaboral = elLectorDeDatos.GetInt32(11);
+                    cliente.DireccionLaboral = elLectorDeDatos.GetString(12);
 
                     ListaCliente.Add(cliente);
 
@@ -165,6 +178,7 @@ namespace BibliotecaClases
             SqlParameter p9 = new SqlParameter("@Direccion", this.Direccion);
             SqlParameter p10 = new SqlParameter("@LugarTrabajo", this.LugarTrabajo);
             SqlParameter p11 = new SqlParameter("@AntiguedadLaboral", this.AntiguedadLaboral);
+            SqlParameter p12 = new SqlParameter("@DireccionLaboral", this.DireccionLaboral);
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.VarChar;
             p3.SqlDbType = SqlDbType.Int;
@@ -176,6 +190,7 @@ namespace BibliotecaClases
             p9.SqlDbType = SqlDbType.VarChar;
             p10.SqlDbType = SqlDbType.VarChar;
             p11.SqlDbType = SqlDbType.Int;
+            p12.SqlDbType = SqlDbType.VarChar;
             cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
@@ -187,6 +202,7 @@ namespace BibliotecaClases
             cmd.Parameters.Add(p9);
             cmd.Parameters.Add(p10);
             cmd.Parameters.Add(p11);
+            cmd.Parameters.Add(p12);
 
             if (id == true) cmd = ObtenerParametroId(cmd);
 
@@ -197,9 +213,9 @@ namespace BibliotecaClases
 
         private SqlCommand ObtenerParametroId(SqlCommand cmd)
         {
-            SqlParameter p12 = new SqlParameter("@NumeroCliente", this.NumeroCliente);
-            p12.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(12);
+            SqlParameter p13 = new SqlParameter("@NumeroCliente", this.NumeroCliente);
+            p13.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(13);
             return cmd;
         }
 

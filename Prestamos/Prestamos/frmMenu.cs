@@ -65,5 +65,11 @@ namespace Prestamos
             frmUsuario form = new frmUsuario();
             form.Show();
         }
+
+        private void registroDeEmpleadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPersonal form = new frmPersonal();
+            form.Show();
+        }
     }
 }

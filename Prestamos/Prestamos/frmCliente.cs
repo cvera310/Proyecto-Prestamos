@@ -133,23 +133,29 @@ namespace Prestamos
 
 
                 }*/
-
-            if (modo == "I")
+            if (cmbTipoDocumento.SelectedItem != null)
             {
-                Cliente cliente = ObtenerClienteForm();
-                Cliente.Agregar(cliente);
+                if (modo == "I")
+                {
+                    Cliente cliente = ObtenerClienteForm();
+                    Cliente.Agregar(cliente);
+                    ActualizarDataGrid();
+                    LimpiarFormulario();
+                    BloquearFormulario();
+                }
+                else if (modo == "E")
+                {
+                    int index = dgvCliente.CurrentRow.Index;
+                    Cliente cliente = ObtenerClienteForm();
+                    Cliente.Editar(cliente);
+                    //modo = "I";
+                    ActualizarDataGrid();
+                    LimpiarFormulario();
+                    BloquearFormulario();
+                }
             }
-            else if (modo == "E")
-            {
-                int index = dgvCliente.CurrentRow.Index;
-                Cliente cliente = ObtenerClienteForm();
-                
-            }
-
-            ActualizarDataGrid();
-            LimpiarFormulario();
-            BloquearFormulario();
-
+            
+           
 
 
         }
@@ -175,6 +181,7 @@ namespace Prestamos
             //cliente.Foto = "texto_en_duro_por_ahora";
             cliente.LugarTrabajo = txtLugarTrabajo.Text;
             cliente.AntiguedadLaboral = Convert.ToInt32(txtAntiguedad.Text);
+            cliente.DireccionLaboral = txtDirLaboral.Text;
             /*if (rdbInformconfNO.Checked)
             {
                 cliente.Informconf = false;
@@ -205,6 +212,7 @@ namespace Prestamos
             txtDireccion.Text = "";
             txtLugarTrabajo.Text = "";
             txtAntiguedad.Text = "";
+            txtDirLaboral.Text = "";
             btnAgregar.Enabled = true;
         }
 
@@ -221,6 +229,7 @@ namespace Prestamos
             txtDireccion.Text = "";
             txtLugarTrabajo.Text = "";
             txtAntiguedad.Text = "";
+            txtDirLaboral.Text = "";
             //rdbInformconfNO.Checked = true;
             //rdbInformConfSI.Checked = false;
             btnAgregar.Enabled = true;
@@ -271,7 +280,7 @@ namespace Prestamos
             txtDirLaboral.Enabled = false;
             txtAntiguedad.Enabled = false;
             txtLugarTrabajo.Enabled = false;
-            txtLugarTrabajo.Enabled = false;
+            txtDirLaboral.Enabled = false;
 
         }
 
@@ -288,7 +297,7 @@ namespace Prestamos
             txtDirLaboral.Enabled = true;
             txtAntiguedad.Enabled = true;
             txtLugarTrabajo.Enabled = true;
-            txtLugarTrabajo.Enabled = true;
+            txtDirLaboral.Enabled = true;
         }
 
         private void ActualizarDataGrid()
@@ -299,9 +308,27 @@ namespace Prestamos
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            modo = "E";
-            DesbloquearFormulario();
+            Cliente cliente = (Cliente)dgvCliente.CurrentRow.DataBoundItem;
+            if (cliente != null)
+            {
+                modo = "E";
+                DesbloquearFormulario();
+                txtNumCliente.Text = Convert.ToString(cliente.NumeroCliente);
+                txtNombre.Text = cliente.Nombre;
+                txtApellido.Text = cliente.Apellido;
+                txtRazonSocial.Text = cliente.RazonSocial;
+                dtpFechaNacimiento.Value = cliente.Nacimiento;
+                txtNroDocumento.Text = cliente.Documento;
+                cmbSexo.SelectedItem = (Sexo)cliente.sexo; 
+                cmbTipoDocumento.SelectedItem = (TipoDocumento)cliente.TipoDeDocumento;
+                txtTelefono.Text = cliente.Telefono;
+                txtDirLaboral.Text = cliente.DireccionLaboral;
+                txtLugarTrabajo.Text = cliente.LugarTrabajo;
+                txtAntiguedad.Text = Convert.ToString(cliente.AntiguedadLaboral);
+                txtLugarTrabajo.Text= cliente.LugarTrabajo;
+               
 
+            }
 
         }
 

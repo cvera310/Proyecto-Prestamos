@@ -254,7 +254,6 @@ namespace Prestamos
 
 
                 }
-
                 ActualizarDataGrid();
                 LimpiarFormulario();
                 BloquearFormulario();

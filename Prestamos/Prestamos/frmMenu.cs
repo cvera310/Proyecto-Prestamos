@@ -71,5 +71,23 @@ namespace Prestamos
             frmPersonal form = new frmPersonal();
             form.Show();
         }
+
+        private void acercaDeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAcercaDe acerca = new frmAcercaDe();
+            acerca.Show();
+        }
+
+        private void registrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmCobranza cobranza = new frmCobranza();
+            cobranza.Show();
+        }
+
+        private void formaDePagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFormaPago fp = new frmFormaPago();
+            fp.Show();
+        }
     }
 }

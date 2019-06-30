@@ -160,6 +160,54 @@ namespace BibliotecaClases
             return ListaCliente;
         }
 
+        public static Cliente ListarClienteId(string id)
+        {
+            Cliente cliente;
+            //ListaCliente.Clear();
+
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCmd = "SELECT * from Cliente WHERE documento='"+id+"'";
+
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                if (elLectorDeDatos.Read())
+                {
+                    cliente = new Cliente();
+                    cliente.NumeroCliente = elLectorDeDatos.GetInt32(0);
+                    cliente.Nombre = elLectorDeDatos.GetString(1);
+                    cliente.Apellido = elLectorDeDatos.GetString(2);
+                    cliente.TipoDeDocumento = (TipoDocumento)elLectorDeDatos.GetInt32(3);
+                    cliente.Documento = elLectorDeDatos.GetString(4);
+                    cliente.sexo = (Sexo)elLectorDeDatos.GetInt32(5);
+                    cliente.RazonSocial = elLectorDeDatos.GetString(6);
+                    cliente.Nacimiento = elLectorDeDatos.GetDateTime(7);
+                    cliente.Telefono = elLectorDeDatos.GetString(8);
+                    cliente.Direccion = elLectorDeDatos.GetString(9);
+                    cliente.LugarTrabajo = elLectorDeDatos.GetString(10);
+                    cliente.AntiguedadLaboral = elLectorDeDatos.GetInt32(11);
+                    cliente.DireccionLaboral = elLectorDeDatos.GetString(12);
+
+                    //ListaCliente.Add(cliente);
+                    return cliente;
+
+                }
+                {
+                    return null;
+                }
+
+            }
+
+
+            
+        }
+
+
+
+
         public override string ToString()
         {
             return  Nombre;

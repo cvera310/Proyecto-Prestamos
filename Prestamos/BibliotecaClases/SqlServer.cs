@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,7 @@ namespace BibliotecaClases
 {
     public class SqlServer
     {
-        public const string CADENA_CONEXION = "Data Source = DESKTOP-739RAQ6\\SQLEXPRESS; Initial Catalog = prestamo; User Id=sa; Password = @lumno123; MultipleActiveResultSets=true;";
-    
+        public static string CADENA_CONEXION = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
 
         public static bool VerifyConnection()
         {

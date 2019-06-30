@@ -102,12 +102,12 @@ namespace BibliotecaClases
 
                 if (lectordedatos.Read())
                 {
-                    string ActualizarUltAcceso = "UPDATE usuario SET usu_ultacceso='" + System.DateTime.Now + "' WHERE usu_codigo='@Usuario'";
+                    /*string ActualizarUltAcceso = "UPDATE usuario SET usu_ultacceso='" + System.DateTime.Now + "' WHERE usu_codigo='@Usuario'";
                     SqlCommand update = new SqlCommand(ActualizarUltAcceso, con);
                     SqlParameter u3 = new SqlParameter("@Usuario", usuario.Trim());
                     u3.SqlDbType = SqlDbType.VarChar;
                     update.Parameters.Add(u3);
-                    update.ExecuteNonQuery();
+                    update.ExecuteNonQuery();*/
 
                     LoginUsuario lu = new LoginUsuario();
                     lu.usuario = usuario.Trim();

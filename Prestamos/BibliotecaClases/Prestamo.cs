@@ -25,16 +25,19 @@ namespace BibliotecaClases
         public DateTime Fecha { get; set; }
 
         public static List <Prestamo> ListaPrestamo = new List<Prestamo>();
+        public List<PrestamoDetalle> ListaPrestamoDetalle = new List<PrestamoDetalle>();
+
         public static void Agregar (Prestamo p)
         {
-            //ListaPrestamo.Add(p);
-            using (SqlConnection con  = new SqlConnection(SqlServer.CADENA_CONEXION))
+            //ListaPrestamo.Add(p);  
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string GuardarCabecera = "INSERT INTO prestamo (pre_numero,pre_fecha,pre_cliente,pre_tipoprestamo,pre_montosolicitado,pre_moneda,pre_cantcuota,pre_interes,pre_montototal,usuario)" +
-                                          "VALUES (@NumeroPrestamo,@Fecha ,@Cliente, @TipoPrestamo, @MontoSolicitado, @Moneda, @Cuota, @Interes, @MontoTotal, @usuario)";
-                SqlCommand cmd  = new SqlCommand(GuardarCabecera, con);
-                SqlParameter cab1 = new SqlParameter("@NumeroPrestamo", p.NumeroPrestamo);
+                string GuardarCabecera = "INSERT INTO prestamo (pre_fecha,pre_cliente,pre_tipoprestamo,pre_montosolicitado,pre_moneda,pre_cantcuota,pre_interes,pre_montototal,usuario)" +
+                                        " output INSERTED.pre_numero " +
+                                        "VALUES (@Fecha ,@Cliente, @TipoPrestamo, @MontoSolicitado, @Moneda, @Cuota, @Interes, @MontoTotal, @usuario)";
+                SqlCommand cmd = new SqlCommand(GuardarCabecera, con);
+                
                 SqlParameter cab2 = new SqlParameter("@Fecha", p.Fecha);
                 SqlParameter cab3 = new SqlParameter("@Cliente", p.cliente);
                 SqlParameter cab4 = new SqlParameter("@TipoPrestamo", p.tipoPrestamo.Codigo);
@@ -44,7 +47,7 @@ namespace BibliotecaClases
                 SqlParameter cab8 = new SqlParameter("@Interes", p.InteresBase);
                 SqlParameter cab9 = new SqlParameter("@MontoTotal", p.MontoTotal);
                 SqlParameter cab10 = new SqlParameter("@Usuario", LoginUsuario.UsuarioConectado());
-                cab1.SqlDbType = SqlDbType.Int;
+                
                 cab2.SqlDbType = SqlDbType.Date;
                 cab3.SqlDbType = SqlDbType.VarChar;
                 cab4.SqlDbType = SqlDbType.VarChar;
@@ -54,7 +57,7 @@ namespace BibliotecaClases
                 cab8.SqlDbType = SqlDbType.Int;
                 cab9.SqlDbType = SqlDbType.Int;
                 cab10.SqlDbType = SqlDbType.VarChar;
-                cmd.Parameters.Add(cab1);
+                
                 cmd.Parameters.Add(cab2);
                 cmd.Parameters.Add(cab3);
                 cmd.Parameters.Add(cab4);
@@ -64,8 +67,39 @@ namespace BibliotecaClases
                 cmd.Parameters.Add(cab8);
                 cmd.Parameters.Add(cab9);
                 cmd.Parameters.Add(cab10);
-                cmd.ExecuteNonQuery();
+
+                int prestamo_id = (int)cmd.ExecuteScalar();
+
+
+
+                foreach (PrestamoDetalle pd in p.ListaPrestamoDetalle)
+                {
+                    string GuardarDetalle = "INSERT INTO prestamo_detalle (predet_nrocabecera,predet_nrocuota,predet_monto,predet_saldo,predet_vencimiento,predet_estado)"
+                                             + "VALUES (@NroCabecera, @NroCuota, @Monto, @Saldo, @Vencimiento, @Estado)";
+                    SqlCommand QUERY_GuardarDetalle = new SqlCommand(GuardarDetalle, con);
+                    SqlParameter det1 = new SqlParameter("@NroCabecera", prestamo_id);
+                    SqlParameter det2 = new SqlParameter("@NroCuota", pd.NroCuota);
+                    SqlParameter det3 = new SqlParameter("@Monto", pd.MontoDetalle);
+                    SqlParameter det4 = new SqlParameter("@Saldo", pd.SaldoDetalle);
+                    SqlParameter det5 = new SqlParameter("@Vencimiento", pd.Vencimiento);
+                    SqlParameter det6 = new SqlParameter("@Estado", pd.estado);
+                    det1.SqlDbType = SqlDbType.Int;
+                    det2.SqlDbType = SqlDbType.Int;
+                    det3.SqlDbType = SqlDbType.Int;
+                    det4.SqlDbType = SqlDbType.Int;
+                    det5.SqlDbType = SqlDbType.Date;
+                    det6.SqlDbType = SqlDbType.VarChar;
+                    QUERY_GuardarDetalle.Parameters.Add(det1);
+                    QUERY_GuardarDetalle.Parameters.Add(det2);
+                    QUERY_GuardarDetalle.Parameters.Add(det3);
+                    QUERY_GuardarDetalle.Parameters.Add(det4);
+                    QUERY_GuardarDetalle.Parameters.Add(det5);
+                    QUERY_GuardarDetalle.Parameters.Add(det6);
+                    QUERY_GuardarDetalle.ExecuteNonQuery();
+
+                }
             }
+             p.ListaPrestamoDetalle.Clear();
         }
 
         public static void Eliminar (Prestamo p)

@@ -42,6 +42,7 @@
       <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -55,7 +56,10 @@
   <ItemGroup>
     <Compile Include="Cobranza.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="CobranzaDetalle.cs" />
+    <Compile Include="DetalleFpagoCobranza.cs" />
     <Compile Include="EvaluacionCredito.cs" />
+    <Compile Include="FormaPago.cs" />
     <Compile Include="LoginUsuario.cs" />
     <Compile Include="Moneda.cs" />
     <Compile Include="MonedaDetalle.cs" />

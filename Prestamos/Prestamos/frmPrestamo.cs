@@ -13,8 +13,11 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
+    
     public partial class frmPrestamo : MetroFramework.Forms.MetroForm
     {
+        CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+        Prestamo prestamo;
         public frmPrestamo()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace Prestamos
             cmbTipoPrestamo.DataSource = TipoPrestamo.ObtenerTipoPrestamos();
             LimpiarFormulario();
             BloquearFormulario();
+            prestamo = new Prestamo();
         }
 
         public void CargarcmbCantCuota()
@@ -43,17 +47,14 @@ namespace Prestamos
 
         public Prestamo ObtenerFormulario()
         {
-            Prestamo prestamo = new Prestamo();
-            prestamo.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
             prestamo.Fecha = dtpFecha.Value.Date;
-            
             prestamo.tipoPrestamo = (TipoPrestamo)cmbTipoPrestamo.SelectedItem;
-            prestamo.MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
+            prestamo.MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text.Replace(".", ""));
             prestamo.moneda = (Moneda)cmbMoneda.SelectedItem;
             prestamo.InteresBase = Convert.ToInt32(txtInteres.Text);
             prestamo.CantidadCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
-            prestamo.Saldo = Convert.ToDouble(txtSaldo.Text);
-            prestamo.MontoTotal = Convert.ToDouble(txtMontoTotal.Text);
+            prestamo.Saldo = Convert.ToDouble(txtSaldo.Text.Replace(".", ""));
+            prestamo.MontoTotal = Convert.ToDouble(txtMontoTotal.Text.Replace(".", ""));
             prestamo.cliente = txtCiCliente.Text;
 
             return prestamo;
@@ -63,7 +64,7 @@ namespace Prestamos
         {
             Prestamo prestamo = ObtenerFormulario();
             Prestamo.Agregar(prestamo);
-            PrestamoDetalle.GuardarBd();
+            
             LimpiarFormulario();
             BloquearFormulario();
             prestamo = new Prestamo();
@@ -78,10 +79,8 @@ namespace Prestamos
                 if (cmbTipoPrestamo.SelectedItem != null && cmbMoneda.SelectedItem != null && cmbCantCuota.SelectedItem != null)
                 {
                     Prestamo.ListaPrestamo.Clear();
-                    Prestamo prestamo = new Prestamo();
-                    CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
                     double Total = 0;
-                    int MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text);
+                    int MontoSolicitado = Convert.ToInt32(txtMontoSolicitado.Text.Replace(".", ""));
                     double Interes = Convert.ToDouble(txtInteres.Text);
                     double InteresGenerado = 0;
                     int CantCuota = Convert.ToInt32(cmbCantCuota.SelectedItem);
@@ -100,13 +99,13 @@ namespace Prestamos
                     {
                         PrestamoDetalle prestamoDetalle = new PrestamoDetalle();
                         prestamoDetalle.NroCuota = i;
-                        prestamoDetalle.NumeroPrestamo = Convert.ToInt32(txtNumero.Text);
                         prestamoDetalle.MontoDetalle = MontoCuota;
                         prestamoDetalle.SaldoDetalle = MontoCuota;
                         prestamoDetalle.estado = EstadoPrestamo.No_pagado;
                         prestamoDetalle.Vencimiento = dtpFecha.Value.Date.AddMonths(i);
+                        prestamo.ListaPrestamoDetalle.Add(prestamoDetalle);
                         PrestamoDetalle.Agregar(prestamoDetalle);
-
+                       
                     }
 
                     ActualizarDgv();
@@ -148,11 +147,7 @@ namespace Prestamos
         {
             btnModificar.Enabled = true;
             PrestamoDetalle prestamoDetalle = (PrestamoDetalle)dgvPrestamoDetalle.CurrentRow.DataBoundItem;
-            txtNumero.Text = Convert.ToString(prestamoDetalle.NumeroPrestamo);
-            //dtpFecha.Value = prestamoDetalle.Fecha;
             
-
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -222,18 +217,20 @@ namespace Prestamos
 
         private void txtCiCliente_Leave(object sender, EventArgs e)
         {
-            foreach (Cliente cli in Cliente.ListaCliente)
+            if (txtCiCliente.Text.Trim() != "")
             {
-                if (cli.Documento == txtCiCliente.Text)
+                Cliente cliente = Cliente.ListarClienteId(txtCiCliente.Text);
+
+                if (cliente != null)
                 {
-                    txtNombreCliente.Text = cli.RazonSocial;
+                    txtNombreCliente.Text = cliente.Nombre + ", " + cliente.Apellido;
                     DesbloquearFormulario();
                 }
                 else
                 {
                     txtNombreCliente.Text = "Inexistente";
+                    txtCiCliente.Focus();
                 }
-
             }
         }
 
@@ -280,9 +277,8 @@ namespace Prestamos
 
         private void txtMontoSolicitado_Leave(object sender, EventArgs e)
         {
-            /*CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
             int monto = Convert.ToInt32(txtMontoSolicitado.Text);
-            txtMontoSolicitado.Text = String.Format(elGR, "{0:0,0}", monto);*/
+            txtMontoSolicitado.Text = String.Format(elGR, "{0:0,0}", monto);
         }
     }
 }

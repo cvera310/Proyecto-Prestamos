@@ -184,8 +184,10 @@
             // 
             // txtNumero
             // 
+            this.txtNumero.Enabled = false;
             this.txtNumero.Location = new System.Drawing.Point(96, 64);
             this.txtNumero.Name = "txtNumero";
+            this.txtNumero.ReadOnly = true;
             this.txtNumero.Size = new System.Drawing.Size(62, 20);
             this.txtNumero.TabIndex = 1;
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);

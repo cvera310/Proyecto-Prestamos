@@ -207,25 +207,82 @@ namespace Prestamos
 
         private void btnEliminarEgreso_Click(object sender, EventArgs e)
         {
-            DetalleEgresos de = (DetalleEgresos)dgvIngreso.CurrentRow.DataBoundItem;
-            if (de !=null)
+            DetalleEgresos de = new DetalleEgresos();
+            de = (DetalleEgresos)dgvEgreso.CurrentRow.DataBoundItem;
+            DialogResult resultado = MessageBox.Show("Confirma la eliminacion del registro?", "Eliminar registro", MessageBoxButtons.YesNo);
+
+            // DetalleEgresos de = (DetalleEgresos)dgvIngreso.CurrentRow.DataBoundItem;
+            //if (de !=null)
+            //{
+            //   EvaluacionCredito.detalle_egresos.Remove(de);
+
+            // }
+
+            if (resultado == System.Windows.Forms.DialogResult.Yes)
             {
-                EvaluacionCredito.detalle_egresos.Remove(de);
+                if (de != null)
+                {
+                    EvaluacionCredito.detalle_egresos.Remove(de);
+                    ActualizarDataGridEgresos();
+
+                    double totalEgreso = 0;
+
+                    EvaluacionCredito ec = new EvaluacionCredito();
+
+                    foreach (DataGridViewRow row in dgvEgreso.Rows)
+                    {
+                        totalEgreso += Convert.ToDouble(row.Cells["monto_egreso"].Value);
+
+                    }
+
+                    txtTotalEgresos.Text = Convert.ToString(ec.TotalEgresos);
+
+                    txtTotalEgresos.Text = Convert.ToString(totalEgreso);
+
+
+
+
+
+                }
             }
-
-            ActualizarDataGridEgresos();
-
+ 
 
         }
 
         private void btnEliminarIngreso_Click(object sender, EventArgs e)
         {
-            DetalleIngresos di = (DetalleIngresos)dgvIngreso.CurrentRow.DataBoundItem;
-            if (di !=null) {
-                EvaluacionCredito.detalle_ingresos.Remove(di);
+            //DetalleIngresos di = (DetalleIngresos)dgvIngreso.CurrentRow.DataBoundItem;
+            //if (di !=null) {
+            //   EvaluacionCredito.detalle_ingresos.Remove(di);
+            // }
+
+            DetalleIngresos di = new DetalleIngresos();
+            di = (DetalleIngresos)dgvIngreso.CurrentRow.DataBoundItem;
+            DialogResult resultado = MessageBox.Show("Confirma la eliminacion del registro?", "Eliminar registro", MessageBoxButtons.YesNo);
+
+            if (resultado == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (di != null)
+                {
+                    EvaluacionCredito.detalle_ingresos.Remove(di);
+                    ActualizarDataGridIngresos();
+
+                    double totalIngreso = 0;
+                    EvaluacionCredito ec = new EvaluacionCredito();
+
+                    foreach (DataGridViewRow row in dgvIngreso.Rows)
+                    {
+                        totalIngreso += Convert.ToDouble(row.Cells["monto_ingreso"].Value);
+                    }
+
+                    txtTotalIngresos.Text = Convert.ToString(ec.TotalIngresos);
+                    txtTotalIngresos.Text = Convert.ToString(totalIngreso);
+
+
+                }
             }
 
-            ActualizarDataGridIngresos();
+            
         }
 
 

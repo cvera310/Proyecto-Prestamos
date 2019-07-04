@@ -98,28 +98,31 @@ namespace BibliotecaClases
                 u2.SqlDbType = SqlDbType.VarChar;
                 cmd.Parameters.Add(u1);
                 cmd.Parameters.Add(u2);
-                SqlDataReader lectordedatos = cmd.ExecuteReader();
 
-                if (lectordedatos.Read())
+                try
                 {
-                    /*string ActualizarUltAcceso = "UPDATE usuario SET usu_ultacceso='" + System.DateTime.Now + "' WHERE usu_codigo='@Usuario'";
-                    SqlCommand update = new SqlCommand(ActualizarUltAcceso, con);
-                    SqlParameter u3 = new SqlParameter("@Usuario", usuario.Trim());
-                    u3.SqlDbType = SqlDbType.VarChar;
-                    update.Parameters.Add(u3);
-                    update.ExecuteNonQuery();*/
+                    SqlDataReader lectordedatos = cmd.ExecuteReader();
 
-                    LoginUsuario lu = new LoginUsuario();
-                    lu.usuario = usuario.Trim();
-                    LoginUsuario.Agregar(lu);
-                    return true;
+                    if (lectordedatos.Read())
+                    {
 
+
+                        LoginUsuario lu = new LoginUsuario();
+                        lu.usuario = usuario.Trim();
+                        LoginUsuario.Agregar(lu);
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
+                catch (SqlException ex)
                 {
+                    Log.EscribirLog("SqlException", ex.Message);
                     return false;
                 }
-
             }
         }
 

@@ -62,6 +62,7 @@
     <Compile Include="DetalleIngresos.cs" />
     <Compile Include="EvaluacionCredito.cs" />
     <Compile Include="FormaPago.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="LoginUsuario.cs" />
     <Compile Include="Moneda.cs" />
     <Compile Include="MonedaDetalle.cs" />

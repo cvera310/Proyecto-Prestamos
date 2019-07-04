@@ -57,7 +57,9 @@
     <Compile Include="Cobranza.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="CobranzaDetalle.cs" />
+    <Compile Include="DetalleEgresos.cs" />
     <Compile Include="DetalleFpagoCobranza.cs" />
+    <Compile Include="DetalleIngresos.cs" />
     <Compile Include="EvaluacionCredito.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="LoginUsuario.cs" />

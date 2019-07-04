@@ -89,5 +89,11 @@ namespace Prestamos
             frmFormaPago fp = new frmFormaPago();
             fp.Show();
         }
+
+        private void aprobarCreditosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAprobarSolicitud solicitud = new frmAprobarSolicitud();
+            solicitud.Show();
+        }
     }
 }

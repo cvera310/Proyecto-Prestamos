@@ -47,6 +47,7 @@
             this.registroDeClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeMonedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,6 @@
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblusuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.formaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -112,8 +112,8 @@
             this.registrarClienteToolStripMenuItem,
             this.aprobarCreditosToolStripMenuItem});
             this.solicitudToolStripMenuItem.Name = "solicitudToolStripMenuItem";
-            this.solicitudToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.solicitudToolStripMenuItem.Text = "Solicitud";
+            this.solicitudToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.solicitudToolStripMenuItem.Text = "Analisis";
             // 
             // registrarClienteToolStripMenuItem
             // 
@@ -126,7 +126,8 @@
             // 
             this.aprobarCreditosToolStripMenuItem.Name = "aprobarCreditosToolStripMenuItem";
             this.aprobarCreditosToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.aprobarCreditosToolStripMenuItem.Text = "Aprobar Creditos";
+            this.aprobarCreditosToolStripMenuItem.Text = "Aprobar Solicitud";
+            this.aprobarCreditosToolStripMenuItem.Click += new System.EventHandler(this.aprobarCreditosToolStripMenuItem_Click);
             // 
             // prestamoToolStripMenuItem
             // 
@@ -140,14 +141,14 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.tsmPrestamo_Click);
             // 
             // tipoDePrestamoToolStripMenuItem
             // 
             this.tipoDePrestamoToolStripMenuItem.Name = "tipoDePrestamoToolStripMenuItem";
-            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.tipoDePrestamoToolStripMenuItem.Text = "Tipo de prestamo";
             this.tipoDePrestamoToolStripMenuItem.Click += new System.EventHandler(this.tsmTipoPrestamo_Click);
             // 
@@ -187,23 +188,30 @@
             // registroDeClienteToolStripMenuItem
             // 
             this.registroDeClienteToolStripMenuItem.Name = "registroDeClienteToolStripMenuItem";
-            this.registroDeClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registroDeClienteToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.registroDeClienteToolStripMenuItem.Text = "Cliente";
             this.registroDeClienteToolStripMenuItem.Click += new System.EventHandler(this.registroDeClienteToolStripMenuItem_Click);
             // 
             // registroDeEmpleadoToolStripMenuItem
             // 
             this.registroDeEmpleadoToolStripMenuItem.Name = "registroDeEmpleadoToolStripMenuItem";
-            this.registroDeEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registroDeEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.registroDeEmpleadoToolStripMenuItem.Text = "Empleado";
             this.registroDeEmpleadoToolStripMenuItem.Click += new System.EventHandler(this.registroDeEmpleadoToolStripMenuItem_Click);
             // 
             // registroDeMonedaToolStripMenuItem
             // 
             this.registroDeMonedaToolStripMenuItem.Name = "registroDeMonedaToolStripMenuItem";
-            this.registroDeMonedaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registroDeMonedaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.registroDeMonedaToolStripMenuItem.Text = "Moneda";
             this.registroDeMonedaToolStripMenuItem.Click += new System.EventHandler(this.registroDeMonedaToolStripMenuItem_Click);
+            // 
+            // formaDePagoToolStripMenuItem
+            // 
+            this.formaDePagoToolStripMenuItem.Name = "formaDePagoToolStripMenuItem";
+            this.formaDePagoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.formaDePagoToolStripMenuItem.Text = "Forma de pago";
+            this.formaDePagoToolStripMenuItem.Click += new System.EventHandler(this.formaDePagoToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -277,13 +285,6 @@
             this.lblusuario.Spring = true;
             this.lblusuario.Text = "usuario";
             this.lblusuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // formaDePagoToolStripMenuItem
-            // 
-            this.formaDePagoToolStripMenuItem.Name = "formaDePagoToolStripMenuItem";
-            this.formaDePagoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.formaDePagoToolStripMenuItem.Text = "Forma de pago";
-            this.formaDePagoToolStripMenuItem.Click += new System.EventHandler(this.formaDePagoToolStripMenuItem_Click);
             // 
             // frmMenu
             // 

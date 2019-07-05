@@ -55,7 +55,7 @@ namespace BibliotecaClases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCmd = @"insert into Solicitud_Credito (NumeroCliente, TotalEgreso, TotalIngreso, Informconf, aprobado) VALUES (@NumeroCliente, @TotalEgreso, @TotalIngreso, @Informconf , 'N')";
+                string textoCmd = @"insert into Solicitud_Credito (NumeroCliente, TotalEgreso, TotalIngreso, Informconf) VALUES (@NumeroCliente, @TotalEgreso, @TotalIngreso, @Informconf)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = ec.ObtenerParametros(cmd, false);
 
@@ -73,7 +73,7 @@ namespace BibliotecaClases
             SqlParameter p3 = new SqlParameter("@TotalIngreso", this.TotalIngresos);
             // SqlParameter p4 = new SqlParameter("@Informconf", ConsultaInformconf());
             SqlParameter p4 = new SqlParameter("@Informconf", this.informconf);
-            SqlParameter p5 = new SqlParameter("@aprobado", this.aprobado);
+            //SqlParameter p5 = new SqlParameter("@aprobado", this.aprobado);
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.Int;
@@ -82,7 +82,7 @@ namespace BibliotecaClases
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
             cmd.Parameters.Add(p4);
-            cmd.Parameters.Add(p5);
+            //cmd.Parameters.Add(p5);
             if (id == true)
             {
                 cmd = ObtenerParametroId(cmd);
@@ -96,9 +96,9 @@ namespace BibliotecaClases
 
         private SqlCommand ObtenerParametroId(SqlCommand cmd)
         {
-            SqlParameter p6 = new SqlParameter("@id", this.id);
-            p6.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p6);
+            SqlParameter p5 = new SqlParameter("@id", this.id);
+            p5.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p5);
 
             return cmd;
         }
@@ -150,7 +150,7 @@ namespace BibliotecaClases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCmd = "select s.id, s.NumeroCliente,c.Nombre, c.Apellido, s.TotalIngreso, s.TotalEgreso, s.Informconf from Solicitud_Credito s join cliente c on c.Documento = s.NumeroCliente and aprobado = 'N'";
+                string textoCmd = "select s.id, s.NumeroCliente,c.Nombre, c.Apellido, s.TotalIngreso, s.TotalEgreso, s.Informconf from Solicitud_Credito s join cliente c on c.Documento = s.NumeroCliente and aprobado IS NOT NULL";
 
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
 

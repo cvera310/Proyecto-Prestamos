@@ -37,10 +37,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nexa Rust Sans Black", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(129, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 23);
+            this.label1.Size = new System.Drawing.Size(119, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "SYGESPRE";
             // 
@@ -49,10 +49,11 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(144, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 52);
+            this.label2.Size = new System.Drawing.Size(89, 52);
             this.label2.TabIndex = 3;
-            this.label2.Text = "V.1.0.0 \r\nChristian Vera\r\nManuel de Jesús\r\nMartin Gimenez";
+            this.label2.Text = "V.1.0.0 \r\nChristian Vera\r\nManuel González\r\nMartín Giménez";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox1
             // 

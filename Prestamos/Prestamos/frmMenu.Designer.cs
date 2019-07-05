@@ -48,8 +48,6 @@
             this.registroDeEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeMonedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -82,7 +80,6 @@
             this.prestamoToolStripMenuItem,
             this.pagosToolStripMenuItem,
             this.reportesToolStripMenuItem,
-            this.ayudaToolStripMenuItem,
             this.ayudaToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(20, 60);
             this.menuStrip1.Name = "menuStrip1";
@@ -141,14 +138,14 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.tsmPrestamo_Click);
             // 
             // tipoDePrestamoToolStripMenuItem
             // 
             this.tipoDePrestamoToolStripMenuItem.Name = "tipoDePrestamoToolStripMenuItem";
-            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.tipoDePrestamoToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.tipoDePrestamoToolStripMenuItem.Text = "Tipo de prestamo";
             this.tipoDePrestamoToolStripMenuItem.Click += new System.EventHandler(this.tsmTipoPrestamo_Click);
             // 
@@ -213,20 +210,6 @@
             this.formaDePagoToolStripMenuItem.Text = "Forma de pago";
             this.formaDePagoToolStripMenuItem.Click += new System.EventHandler(this.formaDePagoToolStripMenuItem_Click);
             // 
-            // ayudaToolStripMenuItem
-            // 
-            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acercaDeToolStripMenuItem});
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.ayudaToolStripMenuItem.Text = "Reportes";
-            // 
-            // acercaDeToolStripMenuItem
-            // 
-            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.acercaDeToolStripMenuItem.Text = "Prestamos Aprobados";
-            // 
             // ayudaToolStripMenuItem1
             // 
             this.ayudaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -238,7 +221,7 @@
             // acercaDeToolStripMenuItem1
             // 
             this.acercaDeToolStripMenuItem1.Name = "acercaDeToolStripMenuItem1";
-            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.acercaDeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.acercaDeToolStripMenuItem1.Text = "Acerca de";
             this.acercaDeToolStripMenuItem1.Click += new System.EventHandler(this.acercaDeToolStripMenuItem1_Click);
             // 
@@ -322,8 +305,6 @@
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem tipoDePrestamoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aprobarCreditosToolStripMenuItem;

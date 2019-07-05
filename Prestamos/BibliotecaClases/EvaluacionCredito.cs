@@ -40,9 +40,11 @@ namespace BibliotecaClases
 
 
         public string informconf { get; set; }
+        public string aprobado { get; set; }
         // public int IngresoExtra { get; set; }
 
         public static List<EvaluacionCredito> listaEvaluacion = new List<EvaluacionCredito>();
+        //public static List<EvaluacionCredito> Pendiente = new List<EvaluacionCredito>();
 
         public static List<DetalleEgresos> detalle_egresos = new List<DetalleEgresos>();
         public static List<DetalleIngresos> detalle_ingresos = new List<DetalleIngresos>();
@@ -53,7 +55,7 @@ namespace BibliotecaClases
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCmd = @"insert into Solicitud_Credito (NumeroCliente, TotalEgreso, TotalIngreso, Informconf) VALUES (@NumeroCliente, @TotalEgreso, @TotalIngreso, @Informconf)";
+                string textoCmd = @"insert into Solicitud_Credito (NumeroCliente, TotalEgreso, TotalIngreso, Informconf, aprobado) VALUES (@NumeroCliente, @TotalEgreso, @TotalIngreso, @Informconf , 'N')";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = ec.ObtenerParametros(cmd, false);
 
@@ -71,6 +73,7 @@ namespace BibliotecaClases
             SqlParameter p3 = new SqlParameter("@TotalIngreso", this.TotalIngresos);
             // SqlParameter p4 = new SqlParameter("@Informconf", ConsultaInformconf());
             SqlParameter p4 = new SqlParameter("@Informconf", this.informconf);
+            SqlParameter p5 = new SqlParameter("@aprobado", this.aprobado);
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.Int;
@@ -79,7 +82,7 @@ namespace BibliotecaClases
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
             cmd.Parameters.Add(p4);
-
+            cmd.Parameters.Add(p5);
             if (id == true)
             {
                 cmd = ObtenerParametroId(cmd);
@@ -93,9 +96,9 @@ namespace BibliotecaClases
 
         private SqlCommand ObtenerParametroId(SqlCommand cmd)
         {
-            SqlParameter p5 = new SqlParameter("@id", this.id);
-            p5.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p5);
+            SqlParameter p6 = new SqlParameter("@id", this.id);
+            p6.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p6);
 
             return cmd;
         }
@@ -142,7 +145,42 @@ namespace BibliotecaClases
             return listaEvaluacion;
         }
 
-       
+        public static DataTable ObtenerPendientes()
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCmd = "select s.id, s.NumeroCliente,c.Nombre, c.Apellido, s.TotalIngreso, s.TotalEgreso, s.Informconf from Solicitud_Credito s join cliente c on c.Documento = s.NumeroCliente and aprobado = 'N'";
+
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+
+                DataTable tabla = new DataTable();
+                tabla.Load(cmd.ExecuteReader());
+                return tabla;
+
+            }
+
+        }
+
+
+        public static void ConfirmarPendientes(List<int> listaPend)
+        {
+
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                foreach (int id in listaPend)
+                {
+                    string textoCmd = @"UPDATE Solicitud_Credito SET aprobado = 'S' where id = @id";
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    SqlParameter p1 = new SqlParameter("@id", id);
+                    p1.SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.Add(p1);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
 
 
 
